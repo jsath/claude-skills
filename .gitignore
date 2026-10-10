@@ -1,0 +1,23 @@
+# OS / editor
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# Secrets never belong here
+.env
+.env.*
+*.pem
+*.key
+credentials*.json
+token*.json
+
+# Build output
+dist/
+*.zip
+node_modules/
+__pycache__/
+
+# Local working notes (not published)
+PROGRESS.md
+REVIEW.md
