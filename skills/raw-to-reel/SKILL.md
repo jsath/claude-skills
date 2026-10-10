@@ -1,6 +1,6 @@
 ---
 name: raw-to-reel
-description: Turns one raw talking-head video into a finished 1080x1920 vertical reel in Claude Code using free local tools (ffmpeg, Whisper, a headless browser): transcribes, keeps the last take of repeated lines, cuts pauses, captions every word, adds real screenshots and official logos, and runs QA gates before handing back the file. Use when a user wants to edit a raw phone take into a Reel, TikTok or Short, cut retakes and silences, add word-by-word captions, or check a finished video. In Claude.ai it produces a cut list, shot plan and caption file only.
+description: "Turns one raw talking-head video into a finished 1080x1920 vertical reel in Claude Code using free local tools (ffmpeg, Whisper, a headless browser): transcribes, keeps the last take of repeated lines, cuts pauses, captions every word, adds real screenshots and official logos, and runs QA gates before handing back the file. Use when a user wants to edit a raw phone take into a Reel, TikTok or Short, cut retakes and silences, add word-by-word captions, or check a finished video. In Claude.ai it produces a cut list, shot plan and caption file only."
 ---
 
 # Raw to Reel System

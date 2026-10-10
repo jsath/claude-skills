@@ -1,6 +1,6 @@
 ---
 name: ready-to-film
-description: Turns notes, voice-note transcripts and half ideas into Reel, TikTok and YouTube scripts in the creator's own voice: ranks an idea bank, writes ten hooks per idea, writes the script at the right length, rewrites anything that sounds like AI using the creator's past transcripts, and fact-checks every claim with sources. Use when a user wants a video script, hooks, a ranked list of what to film, a voice pass on a script, a claims check, or a record sheet to read from while filming.
+description: "Turns notes, voice-note transcripts and half ideas into Reel, TikTok and YouTube scripts in the creator's own voice: ranks an idea bank, writes ten hooks per idea, writes the script at the right length, rewrites anything that sounds like AI using the creator's past transcripts, and fact-checks every claim with sources. Use when a user wants a video script, hooks, a ranked list of what to film, a voice pass on a script, a claims check, or a record sheet to read from while filming."
 ---
 
 # Ready to Film System

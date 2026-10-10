@@ -1,6 +1,6 @@
 ---
 name: viral-breakdown
-description: Researches a creator's niche: finds the creators actually winning, computes each creator's baseline views and keeps only videos that beat it by 3x or more, breaks down why each outlier worked from its transcript, and adapts the best ideas into the user's own version with the source named. Use when a user asks what to make next, wants competitor or niche research for short-form or YouTube, wants outliers or viral videos in their niche, or wants a weekly idea radar. Uses public data and pasted numbers only.
+description: "Researches a creator's niche: finds the creators actually winning, computes each creator's baseline views and keeps only videos that beat it by 3x or more, breaks down why each outlier worked from its transcript, and adapts the best ideas into the user's own version with the source named. Use when a user asks what to make next, wants competitor or niche research for short-form or YouTube, wants outliers or viral videos in their niche, or wants a weekly idea radar. Uses public data and pasted numbers only."
 ---
 
 # Viral Breakdown System

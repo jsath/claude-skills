@@ -1,6 +1,6 @@
 ---
 name: bottleneck-removal
-description: Finds the one process in a business that waits on the owner the most, turns it into a written runbook Claude can follow the same way every time, handles edge cases with owner-approved rules, monitors each run and writes a handoff manual for a team member. Use when an owner says everything waits on them, asks to find their bottleneck, wants to systemise or document a process (quoting, approvals, scheduling, screening, invoicing checks) or wants to hand a task off without training someone.
+description: "Finds the one process in a business that waits on the owner the most, turns it into a written runbook Claude can follow the same way every time, handles edge cases with owner-approved rules, monitors each run and writes a handoff manual for a team member. Use when an owner says everything waits on them, asks to find their bottleneck, wants to systemise or document a process (quoting, approvals, scheduling, screening, invoicing checks) or wants to hand a task off without training someone."
 ---
 
 # Bottleneck Removal System

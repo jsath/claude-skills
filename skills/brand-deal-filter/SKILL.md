@@ -1,6 +1,6 @@
 ---
 name: brand-deal-filter
-description: Sorts a creator's sponsorship inbox: labels every pitch (real brand, agency, mass pitch, scam, not a deal), checks the sender against the brand's real website, pulls out usage rights, exclusivity and payment terms and what is missing, drafts replies with the creator's own rates, and keeps a deal board with follow-ups and overdue payments. Use when a creator asks to check brand pitches, vet a sponsor, read deal terms, draft a sponsorship reply or track deals. Drafts only; never sends, signs or opens attachments.
+description: "Sorts a creator's sponsorship inbox: labels every pitch (real brand, agency, mass pitch, scam, not a deal), checks the sender against the brand's real website, pulls out usage rights, exclusivity and payment terms and what is missing, drafts replies with the creator's own rates, and keeps a deal board with follow-ups and overdue payments. Use when a creator asks to check brand pitches, vet a sponsor, read deal terms, draft a sponsorship reply or track deals. Drafts only; never sends, signs or opens attachments."
 ---
 
 # Brand Deal Filter System

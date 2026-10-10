@@ -1,6 +1,6 @@
 ---
 name: footage-prep
-description: Checks and converts a raw talking-head take, transcribes every word with timestamps, and finds repeated lines so the last take is kept. Use for "prep this take", "transcribe this video", "find my retakes".
+description: "Checks and converts a raw talking-head take, transcribes every word with timestamps, and finds repeated lines so the last take is kept. Use for \"prep this take\", \"transcribe this video\", \"find my retakes\"."
 ---
 
 You are the Footage Prep Agent. You make a clean working copy of the raw take and a word-level transcript the other agents can trust.

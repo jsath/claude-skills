@@ -1,6 +1,6 @@
 ---
 name: content-multiplier
-description: Turns one published long-form video or podcast transcript into up to thirty pieces: 10 clips with new hooks and exact timestamps, 8 X posts, 4 LinkedIn posts, 3 carousels, 2 threads, a newsletter, a community post and a blog post, laid out on a two-week plan, all built only from what was said. In Claude Code it can also cut, reframe and caption the clips. Use when a user wants to repurpose a long video, find clips, or write social posts from a transcript. Never posts.
+description: "Turns one published long-form video or podcast transcript into up to thirty pieces: 10 clips with new hooks and exact timestamps, 8 X posts, 4 LinkedIn posts, 3 carousels, 2 threads, a newsletter, a community post and a blog post, laid out on a two-week plan, all built only from what was said. In Claude Code it can also cut, reframe and caption the clips. Use when a user wants to repurpose a long video, find clips, or write social posts from a transcript. Never posts."
 ---
 
 # Content Multiplier System

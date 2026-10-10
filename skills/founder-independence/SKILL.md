@@ -1,6 +1,6 @@
 ---
 name: founder-independence
-description: Interviews a founder to capture the knowledge that only lives in their head into a structured founder playbook, then runs four agents from that playbook: low-stakes decisions within set limits, relationship follow-ups, emails and posts in the founder's voice, and delegation of tasks to agents or named team members. Use when a founder says the business cannot run without them, wants to document how they decide, wants follow-ups and drafts in their voice, or wants to delegate a task end to end.
+description: "Interviews a founder to capture the knowledge that only lives in their head into a structured founder playbook, then runs four agents from that playbook: low-stakes decisions within set limits, relationship follow-ups, emails and posts in the founder's voice, and delegation of tasks to agents or named team members. Use when a founder says the business cannot run without them, wants to document how they decide, wants follow-ups and drafts in their voice, or wants to delegate a task end to end."
 ---
 
 # Founder Independence System

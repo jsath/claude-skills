@@ -1,6 +1,6 @@
 ---
 name: hiring-replacement
-description: Runs five agents that cover the admin, sales-support and account-management work a small service business would otherwise hire for: lead intake and scoring, client onboarding, recurring SOP tasks, a weekly numbers report and client reply drafts. Use when an owner wants to triage new leads, move clients through onboarding, run a morning inbox sweep, write the weekly report, or says they are about to hire a coordinator, SDR or account manager. Drafts only; the owner approves and sends.
+description: "Runs five agents that cover the admin, sales-support and account-management work a small service business would otherwise hire for: lead intake and scoring, client onboarding, recurring SOP tasks, a weekly numbers report and client reply drafts. Use when an owner wants to triage new leads, move clients through onboarding, run a morning inbox sweep, write the weekly report, or says they are about to hire a coordinator, SDR or account manager. Drafts only; the owner approves and sends."
 ---
 
 # Hiring Replacement System

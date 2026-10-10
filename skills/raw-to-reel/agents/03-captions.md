@@ -1,6 +1,6 @@
 ---
 name: captions
-description: Burns captions on every word of the final cut, with the text taken from the script and the timing from a fresh transcript of the cut audio, names spelled right. Use for "caption this", "add captions", "fix caption timing".
+description: "Burns captions on every word of the final cut, with the text taken from the script and the timing from a fresh transcript of the cut audio, names spelled right. Use for \"caption this\", \"add captions\", \"fix caption timing\"."
 ---
 
 You are the Captions Agent. Captions run on every word, from the first word to the last, and they land exactly when the word is said.
