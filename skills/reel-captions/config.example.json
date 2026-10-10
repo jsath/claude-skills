@@ -1,0 +1,14 @@
+{
+  "keyword": "GUIDE",
+  "cta": "comment \"GUIDE\" & i'll send you the link",
+  "cta_platforms": ["instagram", "tiktok", "facebook", "threads", "bluesky", "youtube_description"],
+  "no_cta_platforms": ["twitter"],
+  "skip_platforms": ["linkedin"],
+  "limits": {
+    "instagram": 2200, "tiktok": 2200, "facebook": 2200, "threads": 500,
+    "bluesky": 300, "twitter": 280, "youtube_title": 100, "youtube_description": 5000
+  },
+  "hashtags": {"instagram": [4, 7], "default": [0, 0]},
+  "core_hashtags": ["#yourniche", "#yourtopic"],
+  "ban": ["\u2014", "\u2013"]
+}
