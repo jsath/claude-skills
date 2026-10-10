@@ -21,3 +21,4 @@ __pycache__/
 # Local working notes (not published)
 PROGRESS.md
 REVIEW.md
+.progress-*.log
