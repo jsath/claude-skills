@@ -1,0 +1,10 @@
+{
+  "name": "repo-radar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Screenshot helper for the repo-radar skill",
+  "license": "MIT",
+  "dependencies": {
+    "playwright-core": "^1.50.0"
+  }
+}
