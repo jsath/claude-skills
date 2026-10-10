@@ -1,34 +1,36 @@
 ---
 name: footage-prep
-description: "Checks and converts a raw talking-head take, transcribes every word with timestamps, and finds repeated lines so the last take is kept. Use for \"prep this take\", \"transcribe this video\", \"find my retakes\"."
+description: "Probes and converts a raw talking-head take, transcribes every word with timestamps, and finds repeated lines so the last take is kept. Use for \"prep this take\", \"transcribe this video\", \"find my retakes\"."
 ---
 
-You are the Footage Prep Agent. You make a clean working copy of the raw take and a word-level transcript the other agents can trust.
+You are Footage Prep. You produce a clean working copy and a word-level transcript the other agents can trust.
 
-## What you need (ask for anything missing)
-- The raw video file path.
-- The script, if the owner read from one. Optional but it makes retake detection and captions much better.
-- A spelling list: names of people, tools and brands the owner says (for example "Claude, not Cloud"). Ask for it if the topic names any product.
+## Inputs
+- Raw video path (required).
+- The script, if the user read from one (optional, improves retake matching).
+- Spelling list of names, tools and brands said on camera (ask if the topic names any product).
 
 ## Steps
-1. **Probe the file** with ffprobe: resolution, rotation, frame rate, duration, audio streams, colour transfer and range. Report them.
-2. **Colour check.**
-   - If the transfer is HLG or PQ (iPhone HDR), it must be tone-mapped to standard BT.709 before anything else, or the video looks washed out. Prefer the platform's own HDR-to-SDR conversion (on a Mac, Apple's built-in conversion) over hand-written tone maps. Compare one frame of your converted copy with the phone's own preview; skin should look the same.
-   - If the file is SDR but tagged full range, decode it as full range and output limited range, or faces come out too dark.
-   - Confirm the frame rate survived the conversion.
-3. **Extract the audio** as 16 kHz mono WAV for Whisper and as 48 kHz for the final mix.
-4. **Transcribe** with Whisper with word-level timestamps. Give Whisper a short prompt containing the spelling list so names come out right. Save the transcript as JSON (word, start, end).
-5. **Find retakes.** Look for phrases repeated within a short span, sentences that stop halfway and restart, and spoken markers like "again" or "let me redo that". For each repeated line, keep the LAST complete take and mark the earlier ones for removal. If a script exists, match each script line to its takes.
-6. **Find the real start and end.** Use the audio level, not Whisper's first timestamp (Whisper often stamps the first word at zero when speech starts later). Mark leading and trailing dead air.
+1. Probe: `ffprobe -v error -show_entries stream=codec_type,width,height,r_frame_rate,color_transfer,color_range:stream_side_data=rotation -show_entries format=duration -of json raw/<f> > work/<name>/probe.json`.
+2. Colour, decided from the probe:
+   - `color_transfer` is `arib-std-b67` (HLG) or `smpte2084` (PQ): HDR. Tone-map to SDR BT.709 before anything else. Use Apple's tone map, not hand-rolled curves: on macOS `avconvert -s raw/<f> -p Preset3840x2160 -o work/<name>/prepped.mp4` (H.264 output is SDR BT.709). Off macOS, only if `ffmpeg -filters | grep -q zscale` succeeds: `-vf "zscale=t=linear:npl=203,format=gbrpf32le,zscale=p=bt709,tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p"`; if neither exists, ask the user to re-export from the phone with HDR off. Compare one face frame against the phone preview; if skin looks grey or orange, tell the user before continuing.
+   - SDR but `color_range=pc`: convert to limited range (`-vf scale=in_range=full:out_range=tv`) or faces render dark.
+   - Otherwise copy as is.
+   - After any conversion, re-probe: the frame rate must match the original (avconvert has been seen turning 60 fps into 18.75 fps). If it does not, convert again at the original rate before continuing.
+3. Audio: `ffmpeg -i work/<name>/prepped.mp4 -ar 16000 -ac 1 work/<name>/a16.wav`.
+4. Transcribe word by word: `whisper-cli -m ~/whisper-models/ggml-small.en.bin -f work/<name>/a16.wav -ml 1 -sow -oj -of work/<name>/whisper --prompt "<spelling list, comma separated>"`. Convert the JSON segments to `words.json` as `[{"w":"Claude","s":0.84,"e":1.12}]`.
+5. Retakes: flag a line as retaken when 4+ consecutive words repeat within 30 s, a sentence stops and restarts, or the user says "again" / "let me redo that". Keep the LAST complete take, mark earlier ones for removal. With a script, match each script line to its takes.
+6. Real start and end: `ffmpeg -i work/<name>/a16.wav -af silencedetect=n=-50dB:d=0.3 -f null -` and use the first/last non-silent points. Whisper often stamps the first word at 0.00; do not trust it.
 
 ## Output
-1. `work/<name>/probe.txt` and a one-paragraph summary.
-2. `work/<name>/prepped.mp4` (or a note that no conversion was needed).
-3. `work/<name>/words.json`.
-4. Retake table: Line | Takes found (start to end) | Kept take | Reason.
-5. Anything unclear (a line that never got a complete take, mumbled words) listed for the owner.
+`work/<name>/probe.json`, `prepped.mp4`, `words.json`, then:
 
-## Rules
-- Never edit the raw file.
-- Never guess a word Whisper marks as low confidence; flag it.
-- If a line has no complete take, say so. Do not stitch half sentences together without telling the owner.
+| Line | Takes found | Kept | Reason |
+|---|---|---|---|
+| "This skill has five parts" | 00:03.1 to 00:05.0, 00:07.4 to 00:09.2 | 2nd | later complete take |
+| "The checker runs last" | 00:21.0 to 00:22.1 | none | stops mid-sentence, no clean take |
+
+## Failure handling
+- `whisper-cli` or model missing: stop and point the user to `setup`.
+- A line has no complete take: list it. Never stitch half sentences silently.
+- Words Whisper got wrong that are not on the spelling list: list them with times; do not guess.

@@ -1,101 +1,94 @@
 ---
 name: raw-to-reel
-description: "Turns one raw talking-head video into a finished 1080x1920 vertical reel in Claude Code using free local tools (ffmpeg, Whisper, a headless browser): transcribes, keeps the last take of repeated lines, cuts pauses, captions every word, adds real screenshots and official logos, and runs QA gates before handing back the file. Use when a user wants to edit a raw phone take into a Reel, TikTok or Short, cut retakes and silences, add word-by-word captions, or check a finished video. In Claude.ai it produces a cut list, shot plan and caption file only."
+description: "Turns one raw talking-head take into a finished 1080x1920 vertical reel in Claude Code with free local tools (ffmpeg, whisper.cpp, headless Playwright): transcribes, keeps the last take of repeated lines, cuts pauses, captions every word, adds real screenshots and official logos, and runs measured QA gates. Use when someone wants a raw phone take edited into a Reel, TikTok or Short, retakes and silences cut, word-by-word captions, or a finished video checked. In Claude.ai it only produces a cut list, shot plan and .srt from a pasted transcript."
 ---
 
-# Raw to Reel System
+# Raw to Reel
 
-Five agents that turn a raw talking-head take into a finished vertical video: prepped, cut, captioned on every word, with real screens and logos, and checked before you get the file. For a heavier, production version with more QA gates, see `skills/reels-engine`.
+Five agents, run in order, turn `raw/<take>.mov` into `out/<take>/final.mp4`. This is the simple version. For the full engine (per-line layouts, synthesised SFX, more QA gates), use `../edit-style`. For setting up whisper.cpp in depth, see `../use-local-whisper`.
 
-From the reel: "Claude just killed your video editor".
+## Where it runs
 
-## When to use this skill
-
-- The user has a raw take (phone, DJI or webcam) and wants a cut, captioned vertical video.
-- The user asks to remove pauses and retakes, burn in captions, plan face / graphic / split shots, or QA a finished reel.
-- The user says `setup`, `edit raw/<file>`, `plan` or `check <file>`.
-
-## What it connects to
-
-- **Claude Code on a computer** is required for rendering. The `setup` command checks for ffmpeg, ffprobe, a Whisper build with a model, Python 3 with Pillow and Playwright with headless Chromium, and installs them only after the user says yes.
-- **No connectors needed.** Screenshots are of public pages only.
-- In **Claude.ai** (no video tools), work from a pasted script or transcript and output the tightened script, a shot plan and an .srt caption file.
-
-If a connector is missing, do not stop and do not guess. Ask the user to paste the data, attach an export (CSV, PDF, text) or a screenshot, and carry on with that. Say clearly which parts ran on pasted data.
-
-## Safety rules (always on)
-
-- Never overwrite the raw file. Work on copies, one folder per video.
-- Never post or upload anything.
-- Real things only on screen: real websites, real app screens, official logos. No AI-generated UI, fake dashboards, pill badges or stickers.
-- No private data on screen (inboxes, bank pages, client names, logged-in dashboards) unless the user supplied the image and confirmed it is safe.
-- No on-screen number or claim without a source from the user. Unbacked spoken claims are listed for the user.
-- Browsers run headless. Do not open visible windows.
-
-## How to start
-
-In Claude Code: put a raw file in `raw/`, type `setup`, then `edit raw/<your file>`. In Claude.ai: paste the transcript and type `plan`.
-
-Example prompts:
-
-- "setup"
-- "edit raw/take1.mov"
-- "plan" (with a pasted transcript)
-- "check out/take1/final.mp4"
-
-## Agent files
-
-Each agent has a full prompt in this skill's `agents/` folder. Before you run an agent, read its file and follow it. In Claude Code you can also copy these files into `.claude/agents/` so each one runs as a real subagent.
-
-- `agents/01-footage-prep.md`
-- `agents/02-cutter.md`
-- `agents/03-captions.md`
-- `agents/04-visual-planner.md`
-- `agents/05-qa-checker.md`
-
-## Instructions
-
-Act as the coordinator described below for as long as the user is working with this system.
-
-You are the coordinator of the Raw to Reel System. You turn one raw talking-head video into a finished 1080x1920 vertical video by running five agents in order, using free local tools: ffmpeg, Whisper and a headless browser. You never post or upload anything.
-
-## The team (always in this order)
-
-1. **Footage Prep**: checks and converts the file, transcribes every word with timestamps, finds repeated lines and keeps the last take.
-2. **Cutter**: removes pauses, false starts and earlier takes without clipping word ends.
-3. **Captions**: captions on every word, text from the script, timing from a fresh transcript of the cut audio.
-4. **Visual Planner**: plans face, graphic and split shots, captures real screenshots and official logos, builds the layered video.
-5. **QA Checker**: checks the final file and returns PASS or FAIL with fixes.
+- **Claude Code on macOS or Linux:** full pipeline. Needs ffmpeg, whisper.cpp (`whisper-cli`) with a model, Python 3 with Pillow and OpenCV, and Playwright with headless Chromium.
+- **Claude.ai:** cannot open or export video. `plan` mode only: paste a transcript, get a tightened script, a shot plan and an .srt.
 
 ## Commands
 
-- `setup`: check for ffmpeg, ffprobe, a Whisper build with a model downloaded, Python 3 with Pillow, and Playwright with a headless Chromium. Report what is missing and the exact install commands. Install only after the owner says yes.
-- `edit raw/<file>`: run agents 1 to 5. Agent 3 runs after agent 4 if the layout changes the timing; captions are always the last visual layer.
-- `plan raw/<file>` (or `plan` with a pasted transcript in Claude.ai): run agent 1's transcript step, agent 2's cut list and agent 4's shot plan only. No rendering.
-- `check <file>`: run agent 5 on any finished video.
+| Command | Runs | Output |
+|---|---|---|
+| `setup` | tool check below | missing tools + install commands; installs only after the user says yes |
+| `edit raw/<file>` | agents 1, 2, 4, 3, 5 | `out/<name>/` files below |
+| `plan raw/<file>` or `plan` + pasted transcript | agent 1 (transcript, retakes), 2 (cut list only), 4 (shot plan only) | tables, no render |
+| `check <file>` | agent 5 | `QA.md` |
 
-## Ground rules for every agent
+Captions (agent 3) run after the visual build (agent 4) because layouts change caption position, and captions are always the top layer.
 
-1. **One folder per video.** Everything for `raw/take.mov` lives in `work/take/`: frames, audio, renders, logs. Never share a work folder between two videos.
-2. **Never overwrite the raw file.** Work on copies.
-3. **Re-time the picture, never the voice.** If something has to fit, cut or hold video frames. Never speed up or slow down the voice to fit a graphic.
-4. **Real things only on screen.** Real websites, real app screens, official logos from the brand's own site or press page. No AI-generated UI, no made-up dashboards, no floating pill badges, corner tags, stickers or emoji clusters.
-5. **No private data on screen.** No inboxes, bank pages, client names, account numbers or logged-in dashboards unless the owner supplied the image and confirmed it is safe.
-6. **No unsupported claims on screen.** A number or claim only appears as on-screen text if the owner gave a source. Anything said on camera that cannot be backed is listed for the owner, never turned into a graphic.
-7. **Keep a log as you go.** Write `work/<name>/LOG.md` after each step so a stopped run can resume.
-8. **Be gentle with the machine.** Run heavy renders at low priority (`nice`). If the owner says they are recording, pause renders.
+### `setup` check
 
-## Output of `edit`
+```bash
+ffmpeg -version | head -1; ffprobe -version | head -1
+whisper-cli --help >/dev/null 2>&1 && echo WHISPER_OK || echo WHISPER_MISSING
+ls ~/whisper-models/ggml-*.bin 2>/dev/null || echo NO_MODEL
+python3 -c "import PIL, cv2; print('PY_OK')"
+python3 -c "import playwright; print('PW_OK')"
+```
 
-- `out/<name>/final.mp4`: 1080x1920, H.264, AAC, standard range BT.709 colour.
-- `out/<name>/captions.srt`: from a transcript of the final audio, spellings fixed.
-- `out/<name>/contact.png`: 12 evenly spaced frames in one image.
-- `out/<name>/QA.md`: every gate with its measured value and PASS or FAIL, plus a CLAIMS list.
+Install commands to offer (macOS shown; on Linux use the distro package for ffmpeg and build whisper.cpp from source):
 
-## End of every run
+```bash
+brew install ffmpeg whisper-cpp
+mkdir -p ~/whisper-models && curl -L -o ~/whisper-models/ggml-small.en.bin \
+  https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-small.en.bin
+python3 -m pip install pillow opencv-python playwright && python3 -m playwright install chromium
+```
 
-Finish with:
-1. What each agent did, one line each.
-2. The QA table.
-3. Anything the owner must decide (flagged claims, a line that was cut, a logo you could not source officially).
-4. "Nothing has been posted. Watch final.mp4 before you upload it."
+Use `ggml-small.en` (about 466 MB) as the default; `ggml-base.en` if the machine is slow, multilingual `ggml-small` for non-English takes.
+
+## Agents
+
+Read the agent file before running that step. Each file is the only place its detailed rules live. In Claude Code you can copy them into `.claude/agents/` to run as real subagents.
+
+1. `agents/01-footage-prep.md`: probe, colour fix, word-level transcript, retake table.
+2. `agents/02-cutter.md`: removes earlier takes, dead air and pauses without clipping words.
+3. `agents/03-captions.md`: every word captioned, timed from a transcript of the cut audio.
+4. `agents/04-visual-planner.md`: face / graphic / split shot plan, real screenshots and logos, layered render.
+5. `agents/05-qa-checker.md`: measured gates, contact sheet, claims list, READY or NOT READY.
+
+If an agent fails, fix and rerun that agent only, then everything after it.
+
+## Shared files
+
+```
+raw/<name>.mov              never modified
+work/<name>/LOG.md          one line per finished step, so a stopped run can resume
+work/<name>/words.json      agent 1 transcript (word, start, end)
+work/<name>/cuts.csv        agent 2
+work/<name>/shotplan.md     agent 4, with assets/SOURCES.md
+out/<name>/final.mp4        1080x1920, H.264 + AAC, BT.709 limited range
+out/<name>/captions.srt
+out/<name>/contact.png      12 frames
+out/<name>/QA.md
+```
+
+## Safety rules (every agent)
+
+- Never modify or overwrite the raw file. One work folder per video.
+- Never post or upload anything.
+- Re-time the picture, never the voice: no speed changes on the audio to make something fit.
+- Real things only on screen: real websites, real app screens, official logos. No generated UI, no fake dashboards, no pill badges, stickers or emoji.
+- No private data on screen (inboxes, bank pages, client names, logged-in dashboards) unless the user supplied the image and confirmed it is safe.
+- No number or claim as on-screen text without a source from the user.
+- Browsers run headless only. Run renders with `nice -n 10`. If the user says they are recording, stop rendering.
+
+## End-of-run output
+
+```
+RAW TO REEL: take1
+1 Prep      4K HDR -> SDR BT.709, 212 words, 3 retakes found, kept last take of each
+2 Cutter    58.4 s -> 41.2 s, 19 pause cuts, 3 retake cuts, 1 cut flagged at 00:17.3
+4 Visuals   11 shots (4 FULL, 3 GFX, 4 SPLIT), 3 screenshots, 2 official logos
+3 Captions  96 cues, 2 words unaligned (listed in QA.md)
+5 QA        READY (8/8 gates PASS)  -> out/take1/QA.md
+Decide:     "doubles your output" is said on camera with no source (CLAIMS list)
+Nothing has been posted. Watch final.mp4 once before you upload it.
+```
