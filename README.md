@@ -85,6 +85,9 @@ files into `.claude/agents/`.
 | [hiring-replacement](skills/hiring-replacement) | Lead intake, client onboarding, SOP tasks, weekly report and client replies | Claude just killed your entire hiring process |
 | [bottleneck-removal](skills/bottleneck-removal) | Finds the process that waits on you most and turns it into a runbook | Claude just killed your business's biggest bottleneck |
 | [founder-independence](skills/founder-independence) | Captures your head into a playbook, then decides, follows up and drafts from it | Claude just killed the reason your business needs you in it |
+| [marketing-team](skills/marketing-team) | Builds your brand voice guide, reads last month's numbers, plans the month, drafts posts and a one-page brief | Claude just fired your marketing team |
+| [podcast-repurpose](skills/podcast-repurpose) | Turns one episode transcript into clip timestamps, show notes, chapters, a newsletter and posts | Claude just killed your podcast editor |
+| [youtube-seo](skills/youtube-seo) | Reads your channel and what works now for channels your size, drafts titles for new and old videos | Claude just killed your SEO strategy |
 | [reels-engine](skills/reels-engine) | My full reel editing engine, in its own repo | The edits behind every reel |
 
 ## My setup: CLAUDE.md
