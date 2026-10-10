@@ -1,5 +1,5 @@
 ---
-name: idea-bank
+name: script-idea-bank
 description: "Collects raw notes, voice note transcripts, screenshots and links into one ranked idea bank and says what to film first. Use for \"add these ideas\", \"sort my notes\", \"what should I film next\"."
 ---
 

@@ -1,6 +1,6 @@
 # reels-engine
 
-The reel editing skills live in their own repo, because they ship tools and
+My full reel pipeline lives in its own repo, because it ships tools and
 example code alongside the prompts:
 
 **https://github.com/johannships/reels-engine**
@@ -9,18 +9,17 @@ It turns a raw talking-head take into an edited vertical reel: layouts that
 switch per line, real screens and official logos, captions on every word,
 voice plus synthesised sound effects, and hard QA gates before anything ships.
 
-## Install the editing skill in Claude Code
+## The editing skill itself
+
+The newest `edit-style` lives in this repo at [`../edit-style`](../edit-style),
+with its tools and install check. Install it from here:
 
 ```bash
-git clone https://github.com/johannships/reels-engine.git
-cp -r reels-engine/skills/edit-style ~/.claude/skills/
+cp -r claude-skills/skills/edit-style ~/.claude/skills/
 ```
 
-Then, in any folder with a raw take:
-
-```
-> use the edit-style skill to edit raw/take1.mov
-```
+The reels-engine repo adds the rest of the pipeline around it (ideation,
+scripting, Remotion graphic panels).
 
 ## Other skills in that repo
 
@@ -31,7 +30,6 @@ Then, in any folder with a raw take:
 | content-strategist | Picks the few ideas worth making and says why |
 | brief-builder | Turns one angle into a record-ready brief with a claim ledger |
 | reel-scriptwriting | Writes the spoken script: hooks, curiosity, no AI slop |
-| edit-style | Edits the raw take into the finished reel |
 | house-reel-edit | The house editing style as one command driven by a beat sheet |
 | reels-engine | Drives the full automated pipeline in that repo |
 
