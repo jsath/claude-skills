@@ -47,7 +47,7 @@ them. If you don't, paste the data in.
 Copy the folder into your skills directory:
 
 ```bash
-git clone https://github.com/johannships/claude-skills.git
+git clone https://github.com/jsath/claude-skills.git
 cp -r claude-skills/skills/warm-lead ~/.claude/skills/
 ```
 
