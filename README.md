@@ -15,6 +15,7 @@ CLAUDE.md               my orchestrator setup, as a template to copy
 skills/<name>/
   SKILL.md              what Claude reads and follows
   scripts/ or tools/    the code the skill runs (editing, SEO, security, PDF...)
+  templates/            starter files the skill copies into your folder
   references/           deeper notes the skill loads when it needs them
   agents/               reel skills only: one prompt per part, usable as Claude Code subagents
 ```
@@ -109,6 +110,17 @@ connector is not available.
 | [podcast-repurpose](skills/podcast-repurpose) | One episode transcript to clip timestamps, show notes, chapters, a newsletter and posts | your podcast editor |
 | [youtube-seo](skills/youtube-seo) | Reads your channel with your YouTube API key and drafts titles for new and old videos | your SEO strategy |
 | [reels-engine](skills/reels-engine) | Pointer to my reel pipeline repo (ideation, scripting, Remotion panels) | the edits behind every reel |
+
+### Starter kits from the reels
+
+Smaller, single-job skills. Each one is what a reel promised, nothing more.
+
+| Skill | What it does | Runs in |
+|---|---|---|
+| [business-starter](skills/business-starter) | The four parts that make Claude know your business: an about-you CLAUDE.md, a context/ folder (pricing, offers, customers), a memory file of corrections, and skills/ | Both |
+| [obsidian-brain](skills/obsidian-brain) | A free Obsidian vault of plain-text notes with Claude Code pointed at it: raw thoughts to clear ideas, half-finished notes finished, your originals untouched | Code |
+| [board-advisor](skills/board-advisor) | A brutally honest advisor: every idea gets the hard truth, steps to fix it, and a task you report back on | Both |
+| [spreadsheet-dashboard](skills/spreadsheet-dashboard) | Cleans a messy spreadsheet and builds a formula dashboard that updates with next month's rows, with a checker for the paste-new-rows trap and a public sample file | Both |
 
 ## My setup: CLAUDE.md
 
