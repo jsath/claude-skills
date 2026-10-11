@@ -110,6 +110,15 @@ connector is not available.
 | [youtube-seo](skills/youtube-seo) | Reads your channel with your YouTube API key and drafts titles for new and old videos | your SEO strategy |
 | [reels-engine](skills/reels-engine) | Pointer to my reel pipeline repo (ideation, scripting, Remotion panels) | the edits behind every reel |
 
+### Claude setups from the reels
+
+| Skill | What it does | Runs in |
+|---|---|---|
+| [website-designer](skills/website-designer) | Claude Code + Anthropic's Frontend Design plugin + the 21st MCP: setup check, brief, one design direction, build, phone and desktop screenshot check | Code |
+| [business-audit](skills/business-audit) | Web search for every listing, review and mention of your business, checked against the truth, then a P1/P2/P3 fix list and drafted replies and correction requests | Both |
+| [llms-txt](skills/llms-txt) | Reads your site, writes an llms.txt in the llmstxt.org format, checks it with an included validator, puts it live at /llms.txt. A proposal, not a ranking guarantee | Both |
+| [be-concise](skills/be-concise) | The CLAUDE.md lines for short, answer-first replies, where they go (or Claude.ai's Instructions for Claude), with a before/after test | Both |
+
 ## My setup: CLAUDE.md
 
 [`CLAUDE.md`](CLAUDE.md) is the file my main Claude Code session runs from:
