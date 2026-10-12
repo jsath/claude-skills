@@ -106,5 +106,10 @@ if START in text and END in text:
         parts.append("")
     parts.append(END)
     a, b = text.index(START), text.index(END) + len(END)
-    readme.write_text(text[:a] + "\n".join(parts) + text[b:])
+    rest = text[b:]
+    # drop old per-group tables a merge from main may have brought back
+    nxt = rest.find("\n## ")
+    if nxt != -1:
+        rest = rest[nxt:]
+    readme.write_text(text[:a] + "\n".join(parts) + "\n" + rest)
     print("README skills section rebuilt")
