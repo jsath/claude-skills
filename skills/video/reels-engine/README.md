@@ -15,7 +15,7 @@ The newest `edit-style` lives in this repo at [`../edit-style`](../edit-style),
 with its tools and install check. Install it from here:
 
 ```bash
-cp -r claude-skills/skills/edit-style ~/.claude/skills/
+cp -r claude-skills/skills/video/edit-style ~/.claude/skills/
 ```
 
 The reels-engine repo adds the rest of the pipeline around it (ideation,

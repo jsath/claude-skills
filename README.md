@@ -6,13 +6,14 @@ the editing skills behind my own videos, the business and writing skills I
 use day to day, every skill from my "Claude just killed..." reels, and the
 CLAUDE.md my main session runs from. Private details are taken out.
 
-Free and MIT licensed (humanizer keeps its own MIT licence, see below).
+Free and MIT licensed (humanizer keeps its own MIT licence, see the writing folder).
 
 ## What's inside
 
 ```
 CLAUDE.md               my orchestrator setup, as a template to copy
-skills/<name>/
+categories.json         which folder each skill lives in (scripts/organize_skills.py reads it)
+skills/<category>/<name>/   video, social, writing, business, web, dev
   SKILL.md              what Claude reads and follows
   scripts/ or tools/    the code the skill runs (editing, SEO, security, PDF...)
   templates/            starter files the skill copies into your folder
@@ -26,9 +27,13 @@ skills/<name>/
 
 ```bash
 git clone https://github.com/jsath/claude-skills.git
-cp -r claude-skills/skills/edit-style ~/.claude/skills/      # one skill
-cp -r claude-skills/skills/* ~/.claude/skills/               # or all of them
+cp -r claude-skills/skills/video/edit-style ~/.claude/skills/   # one skill
+cp -r claude-skills/skills/video/* ~/.claude/skills/            # one category
+cp -r claude-skills/skills/*/* ~/.claude/skills/                # or all of them
 ```
+
+Copy the skill folders themselves into `~/.claude/skills/`, not the category
+folders: Claude Code looks for `~/.claude/skills/<name>/SKILL.md`.
 
 Use `~/.claude/skills/` for every project or `.claude/skills/` for one. Start a
 new session and ask for the job; Claude loads the skill when the request
@@ -43,107 +48,110 @@ Team and Enterprise plans an admin has to allow skills first). Skills marked
 
 ## The skills
 
-### Editing: the pipeline behind my videos
+Six folders, one per kind of job. Every skill keeps its own folder name, so
+`johann.fyi/go/claude-skills?s=<name>` links still land on it.
 
-Run in this order: transcribe, edit, write the post text, make the cover.
+<!-- skills:start -->
 
-| Skill | What it does | Runs in |
+### Video: editing and repurposing (`skills/video/`)
+
+The pipeline behind my videos runs in this order: use-local-whisper (transcribe), edit-style or longform-edit (edit), reel-captions (post text), thumbnail-generator (cover).
+
+| Skill | What it does | Runs in / from |
 |---|---|---|
-| [edit-style](skills/edit-style) | Raw talking-head take to a finished 1080x1920 reel: layouts that switch per line, real UI and official logos, captions on every word, -14 LUFS voice, measured QA gates | Code |
-| [longform-edit](skills/longform-edit) | Raw YouTube recording to a publish-ready video: retakes removed (last take kept), dead air tightened, mastered voice, captions throughout, chapters and description, gates on the final render | Code |
-| [use-local-whisper](skills/use-local-whisper) | Local transcription with word timestamps (words.json, .txt, .srt). Nothing uploaded, no API key | Code |
-| [reel-captions](skills/reel-captions) | Per-platform post captions for one finished video, with a checker for length, hashtags and where the CTA may go | Both |
-| [thumbnail-generator](skills/thumbnail-generator) | 1280x720 thumbnail: text-free background, real cutout, words added in code, checked at phone size | Code |
-| [script-polish](skills/script-polish) | Rewrites a script so it sounds like one person talking to one friend, with pacing checkpoints | Both |
+| [edit-style](skills/video/edit-style) | Raw talking-head take to a finished 1080x1920 reel: layouts that switch per line, real UI and official logos, captions on every word, -14 LUFS voice, measured QA gates | Code |
+| [longform-edit](skills/video/longform-edit) | Raw YouTube recording to a publish-ready video: retakes removed (last take kept), dead air tightened, mastered voice, captions throughout, chapters and description, gates on the final render | Code |
+| [use-local-whisper](skills/video/use-local-whisper) | Local transcription with word timestamps (words.json, .txt, .srt). Nothing uploaded, no API key | Code |
+| [reel-captions](skills/video/reel-captions) | Per-platform post captions for one finished video, with a checker for length, hashtags and where the CTA may go | Both |
+| [thumbnail-generator](skills/video/thumbnail-generator) | 1280x720 thumbnail: text-free background, real cutout, words added in code, checked at phone size | Code |
+| [script-polish](skills/video/script-polish) | Rewrites a script so it sounds like one person talking to one friend, with pacing checkpoints | Both |
+| [raw-to-reel](skills/video/raw-to-reel) | Simple five-step reel edit in Claude Code (prep, cut, captions, visuals, QA). For the full engine use edit-style | reel: "Claude just killed your video editor" |
+| [ready-to-film](skills/video/ready-to-film) | Notes and voice memos to fact-checked scripts in your voice | reel: "Claude just killed your scriptwriter" |
+| [caption-engine](skills/video/caption-engine) | Captions per platform in your voice, CTA matched to the video | reel: "Claude just killed your caption writer" |
+| [content-multiplier](skills/video/content-multiplier) | One long video into up to 30 clips and posts | reel: "Claude just killed your repurposing workflow" |
+| [podcast-repurpose](skills/video/podcast-repurpose) | One episode transcript to clip timestamps, show notes, chapters, a newsletter and posts | reel: "Claude just killed your podcast editor" |
+| [reels-engine](skills/video/reels-engine) | Pointer to my reel pipeline repo (ideation, scripting, Remotion panels) | reel: "Claude just killed the edits behind every reel" |
 
-### Business, writing and build skills
+### Social: ideas, planning and channels (`skills/social/`)
 
-| Skill | What it does | Runs in |
+Most of these came from my "Claude just killed..." reels. Each runs in five parts and nothing posts on its own: every outgoing item is a draft you approve.
+
+| Skill | What it does | Runs in / from |
 |---|---|---|
-| [humanizer](skills/humanizer) | Strips AI writing patterns from text. By [blader](https://github.com/blader/humanizer), MIT, copied unchanged with credit | Both |
-| [tweet-writer](skills/tweet-writer) | X posts and threads in your voice, learned from your best posts, using formats that measured best | Both |
-| [linkedin-writer](skills/linkedin-writer) | LinkedIn posts in your voice, formats ranked by measured reach | Both |
-| [newsletter](skills/newsletter) | A founder newsletter issue in your voice: scene, lesson, one usable thing, one CTA | Both |
-| [repo-radar](skills/repo-radar) | Keeps a verified, deduplicated list of GitHub repos you feature, with phone-size screenshots | Code |
-| [technical-presentations](skills/technical-presentations) | Designs and red-teams technical talks and decks so they have depth, not framework cards | Both |
-| [conversion-funnel-auditing](skills/conversion-funnel-auditing) | Audits a live funnel from ad promise to booked call or payment, with P0/P1/P2 findings | Both |
-| [seo-agent](skills/seo-agent) | Site-config driven SEO audit and fix loop: crawl, indexability, schema, link graph, Core Web Vitals, Search Console, fixes as PRs | Code |
-| [website-dev](skills/website-dev) | Ships changes to a GitHub + Vercel site and proves they are live | Code |
-| [security-auditor](skills/security-auditor) | Repo security audit: secrets, dependency advisories, commit history, threat-model review, findings report | Code |
-| [precision-pdf-editing](skills/precision-pdf-editing) | Surgical edits to an existing PDF that keep fonts, highlights and layout, with a pixel diff to prove it | Code |
-| [downloadable-asset-engineering](skills/downloadable-asset-engineering) | Builds reproducible ZIP downloads and verifies the released bytes | Code |
+| [viral-breakdown](skills/social/viral-breakdown) | Finds videos that beat their creator's normal by 3x, explains why, ends in a weekly top five | reel: "Claude just killed your competitor research" |
+| [idea-bank](skills/social/idea-bank) | Outlier videos in your niche to a month of ideas you can speak to | reel: "Claude just killed your ideas meeting" |
+| [best-time](skills/social/best-time) | Reads your analytics exports and plans what to post, where and when | reel: "Claude just killed your posting schedule" |
+| [content-month](skills/social/content-month) | Pillars, then a planned, written and checked month of posts | reel: "Claude just killed your content calendar" |
+| [daily-social](skills/social/daily-social) | Picks today's industry story, drafts posts per platform, Friday report | reel: "Claude just killed your social media manager" |
+| [marketing-team](skills/social/marketing-team) | Voice guide, last month's numbers, a month plan and drafted posts | reel: "Claude just killed your marketing team" |
+| [youtube-seo](skills/social/youtube-seo) | Reads your channel with your YouTube API key and drafts titles for new and old videos | reel: "Claude just killed your SEO strategy" |
+| [comment-reply](skills/social/comment-reply) | Pulls YouTube comments (Data API key or paste), sorts, drafts replies, finds leads and ideas | reel: "Claude just killed your comments section" |
+| [brand-deal-filter](skills/social/brand-deal-filter) | Labels sponsor pitches, checks the brand, reads the terms, drafts replies | reel: "Claude just killed your brand deals inbox" |
+| [dm-closer](skills/social/dm-closer) | DM reply bank, qualifying questions and a ManyChat flow plan | reel: "Claude just killed your DM strategy" |
 
-### Everyday business and dev skills
+### Writing and voice (`skills/writing/`)
 
-Generic versions of skills I run every week, rewritten for anyone to use.
-Read-only or draft-only: nothing sends, deletes or posts without you.
+humanizer is by [blader](https://github.com/blader/humanizer), MIT, copied unchanged with credit.
 
-| Skill | What it does | Runs in |
+| Skill | What it does | Runs in / from |
 |---|---|---|
-| [meeting-follow-up](skills/meeting-follow-up) | After a call: verified attendee list, what was promised both ways, one owner per action, checks for replies and booked calls, then follow-up drafts. Never sends | Both |
-| [competitor-research](skills/competitor-research) | Competitor deep dive from official sources first, every claim labelled with its evidence, ending in a claim-safe battlecard | Both |
-| [safe-resale](skills/safe-resale) | Selling a valuable item: sold comps, net proceeds per channel as formulas, scam red flags, safe handover and shipping | Both |
-| [secure-credentials](skills/secure-credentials) | API keys and tokens without the value ever reaching chat, logs or git: locked .env, read-only check, gitleaks, rotation checklist | Code |
-| [linux-server-ops](skills/linux-server-ops) | Disk full, out of memory or runaway logs on a Linux server: measure first, safest fixes first, prevention, before and after report | Code |
-| [html-to-pdf](skills/html-to-pdf) | Documents as HTML with exact page layout, rendered to PDF headless, every page checked as an image. Tested render script included | Code |
+| [humanizer](skills/writing/humanizer) | Strips AI writing patterns from text. By [blader](https://github.com/blader/humanizer), MIT, copied unchanged with credit | Both |
+| [sounds-like-me](skills/writing/sounds-like-me) | Learns how you write and talk, writes your voice guide, rewrites drafts | reel: "Claude just killed your brand voice guide" |
+| [tweet-writer](skills/writing/tweet-writer) | X posts and threads in your voice, learned from your best posts, using formats that measured best | Both |
+| [linkedin-writer](skills/writing/linkedin-writer) | LinkedIn posts in your voice, formats ranked by measured reach | Both |
+| [newsletter](skills/writing/newsletter) | A founder newsletter issue in your voice: scene, lesson, one usable thing, one CTA | Both |
+| [launch-week](skills/writing/launch-week) | Sales page, launch emails and daily hooks, then a skeptic rewrites the hype | reel: "Claude just killed your launch strategy" |
+| [technical-presentations](skills/writing/technical-presentations) | Designs and red-teams technical talks and decks so they have depth, not framework cards | Both |
+| [be-concise](skills/writing/be-concise) | The CLAUDE.md lines for short, answer-first replies, where they go (or Claude.ai's Instructions for Claude), with a before/after test | Both |
 
-### Skills from the reels ("Claude just killed...")
+### Business: sales, ops and decisions (`skills/business/`)
 
-Each one runs five parts. Nothing sends, posts or schedules on its own: every
-outgoing item is a draft you approve. Missing data becomes a question, never a
-made-up number, and every skill has a paste-or-export fallback when a
-connector is not available.
+Nothing sends, deletes or posts without you. Missing data becomes a question, never a made-up number.
 
-| Skill | What it does | Reel |
+| Skill | What it does | Runs in / from |
 |---|---|---|
-| [raw-to-reel](skills/raw-to-reel) | Simple five-step reel edit in Claude Code (prep, cut, captions, visuals, QA). For the full engine use edit-style | your video editor |
-| [viral-breakdown](skills/viral-breakdown) | Finds videos that beat their creator's normal by 3x, explains why, ends in a weekly top five | your competitor research |
-| [ready-to-film](skills/ready-to-film) | Notes and voice memos to fact-checked scripts in your voice | your scriptwriter |
-| [brand-deal-filter](skills/brand-deal-filter) | Labels sponsor pitches, checks the brand, reads the terms, drafts replies | your brand deals inbox |
-| [content-multiplier](skills/content-multiplier) | One long video into up to 30 clips and posts | your repurposing workflow |
-| [warm-lead](skills/warm-lead) | Cleans a lead list, researches each lead, drafts outreach and follow-ups, sorts replies | cold outreach |
-| [ops-desk](skills/ops-desk) | Writes processes down, morning check, nudge drafts, Friday wrap-up | your operations manager |
-| [new-hire](skills/new-hire) | Two-week training plan, docs-only Q&A, quizzes, progress checks | your onboarding process |
-| [happy-customer](skills/happy-customer) | Sorts the support inbox, builds an answer sheet, drafts replies, flags hard cases | your customer support inbox |
-| [monday-numbers](skills/monday-numbers) | Checks and compares weekly numbers, explains drops, three Monday actions | your data analyst |
-| [no-meeting-monday](skills/no-meeting-monday) | Updates, blockers and decisions in one Monday brief | your weekly meetings |
-| [hand-it-off](skills/hand-it-off) | Maps the job you hate and writes it up as your own new Claude skill | the part of your business you hate the most |
-| [launch-week](skills/launch-week) | Sales page, launch emails and daily hooks, then a skeptic rewrites the hype | your launch strategy |
-| [dm-closer](skills/dm-closer) | DM reply bank, qualifying questions and a ManyChat flow plan | your DM strategy |
-| [sounds-like-me](skills/sounds-like-me) | Learns how you write and talk, writes your voice guide, rewrites drafts | your brand voice guide |
-| [caption-engine](skills/caption-engine) | Captions per platform in your voice, CTA matched to the video | your caption writer |
-| [comment-reply](skills/comment-reply) | Pulls YouTube comments (Data API key or paste), sorts, drafts replies, finds leads and ideas | your comments section |
-| [idea-bank](skills/idea-bank) | Outlier videos in your niche to a month of ideas you can speak to | your ideas meeting |
-| [best-time](skills/best-time) | Reads your analytics exports and plans what to post, where and when | your posting schedule |
-| [content-month](skills/content-month) | Pillars, then a planned, written and checked month of posts | your content calendar |
-| [daily-social](skills/daily-social) | Picks today's industry story, drafts posts per platform, Friday report | your social media manager |
-| [hiring-replacement](skills/hiring-replacement) | Lead intake, onboarding, SOP tasks, weekly report, client reply drafts | your entire hiring process |
-| [bottleneck-removal](skills/bottleneck-removal) | Finds the process that waits on you most and turns it into a runbook | your business's biggest bottleneck |
-| [founder-independence](skills/founder-independence) | Captures your head into a playbook, then decides, follows up and drafts from it | the reason your business needs you in it |
-| [marketing-team](skills/marketing-team) | Voice guide, last month's numbers, a month plan and drafted posts | your marketing team |
-| [podcast-repurpose](skills/podcast-repurpose) | One episode transcript to clip timestamps, show notes, chapters, a newsletter and posts | your podcast editor |
-| [youtube-seo](skills/youtube-seo) | Reads your channel with your YouTube API key and drafts titles for new and old videos | your SEO strategy |
-| [reels-engine](skills/reels-engine) | Pointer to my reel pipeline repo (ideation, scripting, Remotion panels) | the edits behind every reel |
+| [business-starter](skills/business/business-starter) | The four parts that make Claude know your business: an about-you CLAUDE.md, a context/ folder (pricing, offers, customers), a memory file of corrections, and skills/ | Both |
+| [board-advisor](skills/business/board-advisor) | A brutally honest advisor: every idea gets the hard truth, steps to fix it, and a task you report back on | Both |
+| [obsidian-brain](skills/business/obsidian-brain) | A free Obsidian vault of plain-text notes with Claude Code pointed at it: raw thoughts to clear ideas, half-finished notes finished, your originals untouched | Code |
+| [spreadsheet-dashboard](skills/business/spreadsheet-dashboard) | Cleans a messy spreadsheet and builds a formula dashboard that updates with next month's rows, with a checker for the paste-new-rows trap and a public sample file | Both |
+| [business-audit](skills/business/business-audit) | Web search for every listing, review and mention of your business, checked against the truth, then a P1/P2/P3 fix list and drafted replies and correction requests | Both |
+| [warm-lead](skills/business/warm-lead) | Cleans a lead list, researches each lead, drafts outreach and follow-ups, sorts replies | reel: "Claude just killed cold outreach" |
+| [meeting-follow-up](skills/business/meeting-follow-up) | After a call: verified attendee list, what was promised both ways, one owner per action, checks for replies and booked calls, then follow-up drafts. Never sends | Both |
+| [competitor-research](skills/business/competitor-research) | Competitor deep dive from official sources first, every claim labelled with its evidence, ending in a claim-safe battlecard | Both |
+| [ops-desk](skills/business/ops-desk) | Writes processes down, morning check, nudge drafts, Friday wrap-up | reel: "Claude just killed your operations manager" |
+| [new-hire](skills/business/new-hire) | Two-week training plan, docs-only Q&A, quizzes, progress checks | reel: "Claude just killed your onboarding process" |
+| [happy-customer](skills/business/happy-customer) | Sorts the support inbox, builds an answer sheet, drafts replies, flags hard cases | reel: "Claude just killed your customer support inbox" |
+| [monday-numbers](skills/business/monday-numbers) | Checks and compares weekly numbers, explains drops, three Monday actions | reel: "Claude just killed your data analyst" |
+| [no-meeting-monday](skills/business/no-meeting-monday) | Updates, blockers and decisions in one Monday brief | reel: "Claude just killed your weekly meetings" |
+| [hand-it-off](skills/business/hand-it-off) | Maps the job you hate and writes it up as your own new Claude skill | reel: "Claude just killed the part of your business you hate the most" |
+| [bottleneck-removal](skills/business/bottleneck-removal) | Finds the process that waits on you most and turns it into a runbook | reel: "Claude just killed your business's biggest bottleneck" |
+| [founder-independence](skills/business/founder-independence) | Captures your head into a playbook, then decides, follows up and drafts from it | reel: "Claude just killed the reason your business needs you in it" |
+| [hiring-replacement](skills/business/hiring-replacement) | Lead intake, onboarding, SOP tasks, weekly report, client reply drafts | reel: "Claude just killed your entire hiring process" |
+| [safe-resale](skills/business/safe-resale) | Selling a valuable item: sold comps, net proceeds per channel as formulas, scam red flags, safe handover and shipping | Both |
 
-### Starter kits from the reels
+### Websites and SEO (`skills/web/`)
 
-Smaller, single-job skills. Each one is what a reel promised, nothing more.
-
-| Skill | What it does | Runs in |
+| Skill | What it does | Runs in / from |
 |---|---|---|
-| [business-starter](skills/business-starter) | The four parts that make Claude know your business: an about-you CLAUDE.md, a context/ folder (pricing, offers, customers), a memory file of corrections, and skills/ | Both |
-| [obsidian-brain](skills/obsidian-brain) | A free Obsidian vault of plain-text notes with Claude Code pointed at it: raw thoughts to clear ideas, half-finished notes finished, your originals untouched | Code |
-| [board-advisor](skills/board-advisor) | A brutally honest advisor: every idea gets the hard truth, steps to fix it, and a task you report back on | Both |
-| [spreadsheet-dashboard](skills/spreadsheet-dashboard) | Cleans a messy spreadsheet and builds a formula dashboard that updates with next month's rows, with a checker for the paste-new-rows trap and a public sample file | Both |
+| [website-designer](skills/web/website-designer) | Claude Code + Anthropic's Frontend Design plugin + the 21st MCP: setup check, brief, one design direction, build, phone and desktop screenshot check | Code |
+| [website-dev](skills/web/website-dev) | Ships changes to a GitHub + Vercel site and proves they are live | Code |
+| [seo-agent](skills/web/seo-agent) | Site-config driven SEO audit and fix loop: crawl, indexability, schema, link graph, Core Web Vitals, Search Console, fixes as PRs | Code |
+| [llms-txt](skills/web/llms-txt) | Reads your site, writes an llms.txt in the llmstxt.org format, checks it with an included validator, puts it live at /llms.txt. A proposal, not a ranking guarantee | Both |
+| [conversion-funnel-auditing](skills/web/conversion-funnel-auditing) | Audits a live funnel from ad promise to booked call or payment, with P0/P1/P2 findings | Both |
 
-### Claude setups from the reels
+### Dev, security and files (`skills/dev/`)
 
-| Skill | What it does | Runs in |
+| Skill | What it does | Runs in / from |
 |---|---|---|
-| [website-designer](skills/website-designer) | Claude Code + Anthropic's Frontend Design plugin + the 21st MCP: setup check, brief, one design direction, build, phone and desktop screenshot check | Code |
-| [business-audit](skills/business-audit) | Web search for every listing, review and mention of your business, checked against the truth, then a P1/P2/P3 fix list and drafted replies and correction requests | Both |
-| [llms-txt](skills/llms-txt) | Reads your site, writes an llms.txt in the llmstxt.org format, checks it with an included validator, puts it live at /llms.txt. A proposal, not a ranking guarantee | Both |
-| [be-concise](skills/be-concise) | The CLAUDE.md lines for short, answer-first replies, where they go (or Claude.ai's Instructions for Claude), with a before/after test | Both |
+| [security-auditor](skills/dev/security-auditor) | Repo security audit: secrets, dependency advisories, commit history, threat-model review, findings report | Code |
+| [secure-credentials](skills/dev/secure-credentials) | API keys and tokens without the value ever reaching chat, logs or git: locked .env, read-only check, gitleaks, rotation checklist | Code |
+| [linux-server-ops](skills/dev/linux-server-ops) | Disk full, out of memory or runaway logs on a Linux server: measure first, safest fixes first, prevention, before and after report | Code |
+| [repo-radar](skills/dev/repo-radar) | Keeps a verified, deduplicated list of GitHub repos you feature, with phone-size screenshots | Code |
+| [downloadable-asset-engineering](skills/dev/downloadable-asset-engineering) | Builds reproducible ZIP downloads and verifies the released bytes | Code |
+| [precision-pdf-editing](skills/dev/precision-pdf-editing) | Surgical edits to an existing PDF that keep fonts, highlights and layout, with a pixel diff to prove it | Code |
+| [html-to-pdf](skills/dev/html-to-pdf) | Documents as HTML with exact page layout, rendered to PDF headless, every page checked as an image. Tested render script included | Code |
+
+<!-- skills:end -->
 
 ## My setup: CLAUDE.md
 
