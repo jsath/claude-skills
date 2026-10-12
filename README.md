@@ -102,6 +102,7 @@ humanizer is by [blader](https://github.com/blader/humanizer), MIT, copied uncha
 | [newsletter](skills/writing/newsletter) | A founder newsletter issue in your voice: scene, lesson, one usable thing, one CTA | Both |
 | [launch-week](skills/writing/launch-week) | Sales page, launch emails and daily hooks, then a skeptic rewrites the hype | reel: "Claude just killed your launch strategy" |
 | [technical-presentations](skills/writing/technical-presentations) | Designs and red-teams technical talks and decks so they have depth, not framework cards | Both |
+| [be-concise](skills/writing/be-concise) | The CLAUDE.md lines for short, answer-first replies, where they go (or Claude.ai's Instructions for Claude), with a before/after test | Both |
 
 ### Business: sales, ops and decisions (`skills/business/`)
 
@@ -113,7 +114,10 @@ Nothing sends, deletes or posts without you. Missing data becomes a question, ne
 | [board-advisor](skills/business/board-advisor) | A brutally honest advisor: every idea gets the hard truth, steps to fix it, and a task you report back on | Both |
 | [obsidian-brain](skills/business/obsidian-brain) | A free Obsidian vault of plain-text notes with Claude Code pointed at it: raw thoughts to clear ideas, half-finished notes finished, your originals untouched | Code |
 | [spreadsheet-dashboard](skills/business/spreadsheet-dashboard) | Cleans a messy spreadsheet and builds a formula dashboard that updates with next month's rows, with a checker for the paste-new-rows trap and a public sample file | Both |
+| [business-audit](skills/business/business-audit) | Web search for every listing, review and mention of your business, checked against the truth, then a P1/P2/P3 fix list and drafted replies and correction requests | Both |
 | [warm-lead](skills/business/warm-lead) | Cleans a lead list, researches each lead, drafts outreach and follow-ups, sorts replies | reel: "Claude just killed cold outreach" |
+| [meeting-follow-up](skills/business/meeting-follow-up) | After a call: verified attendee list, what was promised both ways, one owner per action, checks for replies and booked calls, then follow-up drafts. Never sends | Both |
+| [competitor-research](skills/business/competitor-research) | Competitor deep dive from official sources first, every claim labelled with its evidence, ending in a claim-safe battlecard | Both |
 | [ops-desk](skills/business/ops-desk) | Writes processes down, morning check, nudge drafts, Friday wrap-up | reel: "Claude just killed your operations manager" |
 | [new-hire](skills/business/new-hire) | Two-week training plan, docs-only Q&A, quizzes, progress checks | reel: "Claude just killed your onboarding process" |
 | [happy-customer](skills/business/happy-customer) | Sorts the support inbox, builds an answer sheet, drafts replies, flags hard cases | reel: "Claude just killed your customer support inbox" |
@@ -123,13 +127,16 @@ Nothing sends, deletes or posts without you. Missing data becomes a question, ne
 | [bottleneck-removal](skills/business/bottleneck-removal) | Finds the process that waits on you most and turns it into a runbook | reel: "Claude just killed your business's biggest bottleneck" |
 | [founder-independence](skills/business/founder-independence) | Captures your head into a playbook, then decides, follows up and drafts from it | reel: "Claude just killed the reason your business needs you in it" |
 | [hiring-replacement](skills/business/hiring-replacement) | Lead intake, onboarding, SOP tasks, weekly report, client reply drafts | reel: "Claude just killed your entire hiring process" |
+| [safe-resale](skills/business/safe-resale) | Selling a valuable item: sold comps, net proceeds per channel as formulas, scam red flags, safe handover and shipping | Both |
 
 ### Websites and SEO (`skills/web/`)
 
 | Skill | What it does | Runs in / from |
 |---|---|---|
+| [website-designer](skills/web/website-designer) | Claude Code + Anthropic's Frontend Design plugin + the 21st MCP: setup check, brief, one design direction, build, phone and desktop screenshot check | Code |
 | [website-dev](skills/web/website-dev) | Ships changes to a GitHub + Vercel site and proves they are live | Code |
 | [seo-agent](skills/web/seo-agent) | Site-config driven SEO audit and fix loop: crawl, indexability, schema, link graph, Core Web Vitals, Search Console, fixes as PRs | Code |
+| [llms-txt](skills/web/llms-txt) | Reads your site, writes an llms.txt in the llmstxt.org format, checks it with an included validator, puts it live at /llms.txt. A proposal, not a ranking guarantee | Both |
 | [conversion-funnel-auditing](skills/web/conversion-funnel-auditing) | Audits a live funnel from ad promise to booked call or payment, with P0/P1/P2 findings | Both |
 
 ### Dev, security and files (`skills/dev/`)
@@ -137,9 +144,12 @@ Nothing sends, deletes or posts without you. Missing data becomes a question, ne
 | Skill | What it does | Runs in / from |
 |---|---|---|
 | [security-auditor](skills/dev/security-auditor) | Repo security audit: secrets, dependency advisories, commit history, threat-model review, findings report | Code |
+| [secure-credentials](skills/dev/secure-credentials) | API keys and tokens without the value ever reaching chat, logs or git: locked .env, read-only check, gitleaks, rotation checklist | Code |
+| [linux-server-ops](skills/dev/linux-server-ops) | Disk full, out of memory or runaway logs on a Linux server: measure first, safest fixes first, prevention, before and after report | Code |
 | [repo-radar](skills/dev/repo-radar) | Keeps a verified, deduplicated list of GitHub repos you feature, with phone-size screenshots | Code |
 | [downloadable-asset-engineering](skills/dev/downloadable-asset-engineering) | Builds reproducible ZIP downloads and verifies the released bytes | Code |
 | [precision-pdf-editing](skills/dev/precision-pdf-editing) | Surgical edits to an existing PDF that keep fonts, highlights and layout, with a pixel diff to prove it | Code |
+| [html-to-pdf](skills/dev/html-to-pdf) | Documents as HTML with exact page layout, rendered to PDF headless, every page checked as an image. Tested render script included | Code |
 
 <!-- skills:end -->
 
