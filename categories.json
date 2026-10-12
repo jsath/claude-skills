@@ -1,0 +1,276 @@
+{
+  "video": {
+    "title": "Video: editing and repurposing",
+    "intro": "The pipeline behind my videos runs in this order: use-local-whisper (transcribe), edit-style or longform-edit (edit), reel-captions (post text), thumbnail-generator (cover).",
+    "skills": {
+      "edit-style": {
+        "what": "Raw talking-head take to a finished 1080x1920 reel: layouts that switch per line, real UI and official logos, captions on every word, -14 LUFS voice, measured QA gates",
+        "notes": "Code"
+      },
+      "longform-edit": {
+        "what": "Raw YouTube recording to a publish-ready video: retakes removed (last take kept), dead air tightened, mastered voice, captions throughout, chapters and description, gates on the final render",
+        "notes": "Code"
+      },
+      "use-local-whisper": {
+        "what": "Local transcription with word timestamps (words.json, .txt, .srt). Nothing uploaded, no API key",
+        "notes": "Code"
+      },
+      "reel-captions": {
+        "what": "Per-platform post captions for one finished video, with a checker for length, hashtags and where the CTA may go",
+        "notes": "Both"
+      },
+      "thumbnail-generator": {
+        "what": "1280x720 thumbnail: text-free background, real cutout, words added in code, checked at phone size",
+        "notes": "Code"
+      },
+      "script-polish": {
+        "what": "Rewrites a script so it sounds like one person talking to one friend, with pacing checkpoints",
+        "notes": "Both"
+      },
+      "raw-to-reel": {
+        "what": "Simple five-step reel edit in Claude Code (prep, cut, captions, visuals, QA). For the full engine use edit-style",
+        "notes": "reel: \"Claude just killed your video editor\""
+      },
+      "ready-to-film": {
+        "what": "Notes and voice memos to fact-checked scripts in your voice",
+        "notes": "reel: \"Claude just killed your scriptwriter\""
+      },
+      "caption-engine": {
+        "what": "Captions per platform in your voice, CTA matched to the video",
+        "notes": "reel: \"Claude just killed your caption writer\""
+      },
+      "content-multiplier": {
+        "what": "One long video into up to 30 clips and posts",
+        "notes": "reel: \"Claude just killed your repurposing workflow\""
+      },
+      "podcast-repurpose": {
+        "what": "One episode transcript to clip timestamps, show notes, chapters, a newsletter and posts",
+        "notes": "reel: \"Claude just killed your podcast editor\""
+      },
+      "reels-engine": {
+        "what": "Pointer to my reel pipeline repo (ideation, scripting, Remotion panels)",
+        "notes": "reel: \"Claude just killed the edits behind every reel\""
+      }
+    }
+  },
+  "social": {
+    "title": "Social: ideas, planning and channels",
+    "intro": "Most of these came from my \"Claude just killed...\" reels. Each runs in five parts and nothing posts on its own: every outgoing item is a draft you approve.",
+    "skills": {
+      "viral-breakdown": {
+        "what": "Finds videos that beat their creator's normal by 3x, explains why, ends in a weekly top five",
+        "notes": "reel: \"Claude just killed your competitor research\""
+      },
+      "idea-bank": {
+        "what": "Outlier videos in your niche to a month of ideas you can speak to",
+        "notes": "reel: \"Claude just killed your ideas meeting\""
+      },
+      "best-time": {
+        "what": "Reads your analytics exports and plans what to post, where and when",
+        "notes": "reel: \"Claude just killed your posting schedule\""
+      },
+      "content-month": {
+        "what": "Pillars, then a planned, written and checked month of posts",
+        "notes": "reel: \"Claude just killed your content calendar\""
+      },
+      "daily-social": {
+        "what": "Picks today's industry story, drafts posts per platform, Friday report",
+        "notes": "reel: \"Claude just killed your social media manager\""
+      },
+      "marketing-team": {
+        "what": "Voice guide, last month's numbers, a month plan and drafted posts",
+        "notes": "reel: \"Claude just killed your marketing team\""
+      },
+      "youtube-seo": {
+        "what": "Reads your channel with your YouTube API key and drafts titles for new and old videos",
+        "notes": "reel: \"Claude just killed your SEO strategy\""
+      },
+      "comment-reply": {
+        "what": "Pulls YouTube comments (Data API key or paste), sorts, drafts replies, finds leads and ideas",
+        "notes": "reel: \"Claude just killed your comments section\""
+      },
+      "brand-deal-filter": {
+        "what": "Labels sponsor pitches, checks the brand, reads the terms, drafts replies",
+        "notes": "reel: \"Claude just killed your brand deals inbox\""
+      },
+      "dm-closer": {
+        "what": "DM reply bank, qualifying questions and a ManyChat flow plan",
+        "notes": "reel: \"Claude just killed your DM strategy\""
+      }
+    }
+  },
+  "writing": {
+    "title": "Writing and voice",
+    "intro": "humanizer is by [blader](https://github.com/blader/humanizer), MIT, copied unchanged with credit.",
+    "skills": {
+      "humanizer": {
+        "what": "Strips AI writing patterns from text. By [blader](https://github.com/blader/humanizer), MIT, copied unchanged with credit",
+        "notes": "Both"
+      },
+      "sounds-like-me": {
+        "what": "Learns how you write and talk, writes your voice guide, rewrites drafts",
+        "notes": "reel: \"Claude just killed your brand voice guide\""
+      },
+      "tweet-writer": {
+        "what": "X posts and threads in your voice, learned from your best posts, using formats that measured best",
+        "notes": "Both"
+      },
+      "linkedin-writer": {
+        "what": "LinkedIn posts in your voice, formats ranked by measured reach",
+        "notes": "Both"
+      },
+      "newsletter": {
+        "what": "A founder newsletter issue in your voice: scene, lesson, one usable thing, one CTA",
+        "notes": "Both"
+      },
+      "launch-week": {
+        "what": "Sales page, launch emails and daily hooks, then a skeptic rewrites the hype",
+        "notes": "reel: \"Claude just killed your launch strategy\""
+      },
+      "technical-presentations": {
+        "what": "Designs and red-teams technical talks and decks so they have depth, not framework cards",
+        "notes": "Both"
+      },
+      "be-concise": {
+        "what": "The CLAUDE.md lines for short, answer-first replies, where they go (or Claude.ai's Instructions for Claude), with a before/after test",
+        "notes": "Both"
+      }
+    }
+  },
+  "business": {
+    "title": "Business: sales, ops and decisions",
+    "intro": "Nothing sends, deletes or posts without you. Missing data becomes a question, never a made-up number.",
+    "skills": {
+      "business-starter": {
+        "what": "The four parts that make Claude know your business: an about-you CLAUDE.md, a context/ folder (pricing, offers, customers), a memory file of corrections, and skills/",
+        "notes": "Both"
+      },
+      "board-advisor": {
+        "what": "A brutally honest advisor: every idea gets the hard truth, steps to fix it, and a task you report back on",
+        "notes": "Both"
+      },
+      "obsidian-brain": {
+        "what": "A free Obsidian vault of plain-text notes with Claude Code pointed at it: raw thoughts to clear ideas, half-finished notes finished, your originals untouched",
+        "notes": "Code"
+      },
+      "spreadsheet-dashboard": {
+        "what": "Cleans a messy spreadsheet and builds a formula dashboard that updates with next month's rows, with a checker for the paste-new-rows trap and a public sample file",
+        "notes": "Both"
+      },
+      "business-audit": {
+        "what": "Web search for every listing, review and mention of your business, checked against the truth, then a P1/P2/P3 fix list and drafted replies and correction requests",
+        "notes": "Both"
+      },
+      "warm-lead": {
+        "what": "Cleans a lead list, researches each lead, drafts outreach and follow-ups, sorts replies",
+        "notes": "reel: \"Claude just killed cold outreach\""
+      },
+      "meeting-follow-up": {
+        "what": "After a call: verified attendee list, what was promised both ways, one owner per action, checks for replies and booked calls, then follow-up drafts. Never sends",
+        "notes": "Both"
+      },
+      "competitor-research": {
+        "what": "Competitor deep dive from official sources first, every claim labelled with its evidence, ending in a claim-safe battlecard",
+        "notes": "Both"
+      },
+      "ops-desk": {
+        "what": "Writes processes down, morning check, nudge drafts, Friday wrap-up",
+        "notes": "reel: \"Claude just killed your operations manager\""
+      },
+      "new-hire": {
+        "what": "Two-week training plan, docs-only Q&A, quizzes, progress checks",
+        "notes": "reel: \"Claude just killed your onboarding process\""
+      },
+      "happy-customer": {
+        "what": "Sorts the support inbox, builds an answer sheet, drafts replies, flags hard cases",
+        "notes": "reel: \"Claude just killed your customer support inbox\""
+      },
+      "monday-numbers": {
+        "what": "Checks and compares weekly numbers, explains drops, three Monday actions",
+        "notes": "reel: \"Claude just killed your data analyst\""
+      },
+      "no-meeting-monday": {
+        "what": "Updates, blockers and decisions in one Monday brief",
+        "notes": "reel: \"Claude just killed your weekly meetings\""
+      },
+      "hand-it-off": {
+        "what": "Maps the job you hate and writes it up as your own new Claude skill",
+        "notes": "reel: \"Claude just killed the part of your business you hate the most\""
+      },
+      "bottleneck-removal": {
+        "what": "Finds the process that waits on you most and turns it into a runbook",
+        "notes": "reel: \"Claude just killed your business's biggest bottleneck\""
+      },
+      "founder-independence": {
+        "what": "Captures your head into a playbook, then decides, follows up and drafts from it",
+        "notes": "reel: \"Claude just killed the reason your business needs you in it\""
+      },
+      "hiring-replacement": {
+        "what": "Lead intake, onboarding, SOP tasks, weekly report, client reply drafts",
+        "notes": "reel: \"Claude just killed your entire hiring process\""
+      },
+      "safe-resale": {
+        "what": "Selling a valuable item: sold comps, net proceeds per channel as formulas, scam red flags, safe handover and shipping",
+        "notes": "Both"
+      }
+    }
+  },
+  "web": {
+    "title": "Websites and SEO",
+    "skills": {
+      "website-designer": {
+        "what": "Claude Code + Anthropic's Frontend Design plugin + the 21st MCP: setup check, brief, one design direction, build, phone and desktop screenshot check",
+        "notes": "Code"
+      },
+      "website-dev": {
+        "what": "Ships changes to a GitHub + Vercel site and proves they are live",
+        "notes": "Code"
+      },
+      "seo-agent": {
+        "what": "Site-config driven SEO audit and fix loop: crawl, indexability, schema, link graph, Core Web Vitals, Search Console, fixes as PRs",
+        "notes": "Code"
+      },
+      "llms-txt": {
+        "what": "Reads your site, writes an llms.txt in the llmstxt.org format, checks it with an included validator, puts it live at /llms.txt. A proposal, not a ranking guarantee",
+        "notes": "Both"
+      },
+      "conversion-funnel-auditing": {
+        "what": "Audits a live funnel from ad promise to booked call or payment, with P0/P1/P2 findings",
+        "notes": "Both"
+      }
+    }
+  },
+  "dev": {
+    "title": "Dev, security and files",
+    "skills": {
+      "security-auditor": {
+        "what": "Repo security audit: secrets, dependency advisories, commit history, threat-model review, findings report",
+        "notes": "Code"
+      },
+      "secure-credentials": {
+        "what": "API keys and tokens without the value ever reaching chat, logs or git: locked .env, read-only check, gitleaks, rotation checklist",
+        "notes": "Code"
+      },
+      "linux-server-ops": {
+        "what": "Disk full, out of memory or runaway logs on a Linux server: measure first, safest fixes first, prevention, before and after report",
+        "notes": "Code"
+      },
+      "repo-radar": {
+        "what": "Keeps a verified, deduplicated list of GitHub repos you feature, with phone-size screenshots",
+        "notes": "Code"
+      },
+      "downloadable-asset-engineering": {
+        "what": "Builds reproducible ZIP downloads and verifies the released bytes",
+        "notes": "Code"
+      },
+      "precision-pdf-editing": {
+        "what": "Surgical edits to an existing PDF that keep fonts, highlights and layout, with a pixel diff to prove it",
+        "notes": "Code"
+      },
+      "html-to-pdf": {
+        "what": "Documents as HTML with exact page layout, rendered to PDF headless, every page checked as an image. Tested render script included",
+        "notes": "Code"
+      }
+    }
+  }
+}
