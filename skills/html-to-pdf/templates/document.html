@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>[Document title]</title>
+<style>
+  /* Paper size. For US Letter use: size: Letter; and set --page-w: 8.5in; --page-h: 11in; */
+  @page { size: A4; margin: 0; }
+
+  :root {
+    --page-w: 210mm;
+    --page-h: 297mm;
+    --pad-y: 18mm;
+    --pad-x: 18mm;
+    --ink: #1a1d21;
+    --ink-2: #4a5059;
+    --muted: #8a9099;
+    --line: #e2e4e8;
+    --surface: #f5f6f8;
+    --accent: #2f5d8a;
+    --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body {
+    font-family: var(--font);
+    color: var(--ink);
+    font-size: 10.5pt;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* One .page = one PDF page. Fixed size, nothing may spill. */
+  .page {
+    width: var(--page-w);
+    height: var(--page-h);
+    padding: var(--pad-y) var(--pad-x);
+    position: relative;
+    overflow: hidden;
+    break-after: page;
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-child { break-after: auto; }
+
+  h1, h2, h3 { margin: 0; line-height: 1.2; break-after: avoid; }
+  h1 { font-size: 28pt; font-weight: 700; letter-spacing: -0.01em; }
+  h2 { font-size: 15pt; font-weight: 700; margin: 0 0 3mm; }
+  h3 { font-size: 11pt; font-weight: 700; margin: 0 0 1.5mm; }
+  p  { margin: 0 0 3mm; orphans: 3; widows: 3; }
+  .eyebrow { font-size: 8pt; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); font-weight: 700; }
+  .lede { font-size: 13pt; color: var(--ink-2); max-width: 140mm; margin-top: 4mm; }
+  section { margin-bottom: 7mm; }
+  .keep { break-inside: avoid; }
+
+  /* Cover */
+  .cover { justify-content: space-between; }
+  .cover .rule { height: 2px; width: 24mm; background: var(--accent); margin: 8mm 0; }
+  .meta { font-size: 9pt; color: var(--muted); }
+
+  /* Key numbers */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; break-inside: avoid; }
+  .stat { background: var(--surface); border-radius: 2mm; padding: 5mm; }
+  .stat .v { font-size: 20pt; font-weight: 700; color: var(--accent); line-height: 1.1; }
+  .stat .l { font-size: 8pt; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 1.5mm; }
+
+  /* Two columns */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+
+  /* Tables: header repeats, rows never split */
+  table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th { text-align: left; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); border-bottom: 1.5px solid var(--ink); padding: 2mm 2mm; }
+  td { border-bottom: 1px solid var(--line); padding: 2mm 2mm; vertical-align: top; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .callout { border-left: 2px solid var(--accent); background: var(--surface); padding: 4mm 5mm; break-inside: avoid; }
+
+  /* Footer pinned to the bottom of each page */
+  .footer {
+    margin-top: auto;
+    padding-top: 4mm;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    font-size: 8pt;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: cover -->
+<div class="page cover">
+  <div class="eyebrow">[Document type, e.g. Report]</div>
+  <div>
+    <h1>[Document title]</h1>
+    <div class="rule"></div>
+    <p class="lede">[One sentence that says what this document is and who it is for.]</p>
+  </div>
+  <div class="meta">
+    [Prepared by Name] &middot; [Organisation]<br>
+    [Date] &middot; hello@example.com
+  </div>
+</div>
+
+<!-- PAGE 2: summary, key numbers, table -->
+<div class="page">
+  <section class="keep">
+    <div class="eyebrow">Summary</div>
+    <h2>[Section heading]</h2>
+    <p>[Two or three sentences with the main point. Lead with the answer, then the reason. Keep paragraphs short so they do not split across pages.]</p>
+  </section>
+
+  <section>
+    <div class="stats">
+      <div class="stat"><div class="v">[00]</div><div class="l">[Metric label]</div></div>
+      <div class="stat"><div class="v">[00]</div><div class="l">[Metric label]</div></div>
+      <div class="stat"><div class="v">[00]</div><div class="l">[Metric label]</div></div>
+    </div>
+  </section>
+
+  <section class="cols">
+    <div class="keep">
+      <h3>[Left heading]</h3>
+      <p>[Short paragraph. Headings stay with their text because of break-after: avoid on headings and .keep on the block.]</p>
+    </div>
+    <div class="keep">
+      <h3>[Right heading]</h3>
+      <p>[Short paragraph. Use two columns for comparisons, before and after, or problem and fix.]</p>
+    </div>
+  </section>
+
+  <section class="keep">
+    <h2>[Table heading]</h2>
+    <table>
+      <thead><tr><th>[Item]</th><th>[Detail]</th><th class="num">[Value]</th></tr></thead>
+      <tbody>
+        <tr><td>[Row one]</td><td>[Detail]</td><td class="num">[0]</td></tr>
+        <tr><td>[Row two]</td><td>[Detail]</td><td class="num">[0]</td></tr>
+        <tr><td>[Row three]</td><td>[Detail]</td><td class="num">[0]</td></tr>
+        <tr><td>[Row four]</td><td>[Detail]</td><td class="num">[0]</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="callout">
+    <h3>[Next step]</h3>
+    <p style="margin:0">[What the reader should do after reading, in one sentence.]</p>
+  </div>
+
+  <div class="footer"><span>[Document title]</span><span>2 / 2</span></div>
+</div>
+
+</body>
+</html>
