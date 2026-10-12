@@ -1,0 +1,26 @@
+# Northside Plumbing
+
+> Northside Plumbing is a licensed plumbing company serving homes and small businesses in Springfield and the surrounding area. We fix leaks, clear drains, install and repair water heaters, and offer same-day emergency callouts.
+
+- Service area: Springfield, Riverside and Oak Hill.
+- Hours: Monday to Saturday, 7am to 7pm. Emergency callouts 24/7.
+- Contact: call (555) 010-0199 or book online at https://northside-plumbing.example/book
+- We do not do new-build plumbing or gas lines.
+
+## Services
+
+- [Leak repair](https://northside-plumbing.example/services/leaks): Finding and fixing leaks in pipes, taps and toilets
+- [Drain cleaning](https://northside-plumbing.example/services/drains): Blocked sinks, showers and main drains
+- [Water heaters](https://northside-plumbing.example/services/water-heaters): Repair and replacement of tank and tankless heaters
+- [Emergency plumbing](https://northside-plumbing.example/emergency): 24/7 callouts, what counts as an emergency, and call-out fees
+
+## About
+
+- [About us](https://northside-plumbing.example/about): Who we are, licences and insurance
+- [Pricing](https://northside-plumbing.example/pricing): How quotes work and our standard rates
+- [FAQ](https://northside-plumbing.example/faq): Common questions about bookings, payment and guarantees
+
+## Optional
+
+- [Blog](https://northside-plumbing.example/blog): Maintenance tips for homeowners
+- [Careers](https://northside-plumbing.example/careers)

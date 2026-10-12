@@ -122,6 +122,15 @@ Smaller, single-job skills. Each one is what a reel promised, nothing more.
 | [board-advisor](skills/board-advisor) | A brutally honest advisor: every idea gets the hard truth, steps to fix it, and a task you report back on | Both |
 | [spreadsheet-dashboard](skills/spreadsheet-dashboard) | Cleans a messy spreadsheet and builds a formula dashboard that updates with next month's rows, with a checker for the paste-new-rows trap and a public sample file | Both |
 
+### Claude setups from the reels
+
+| Skill | What it does | Runs in |
+|---|---|---|
+| [website-designer](skills/website-designer) | Claude Code + Anthropic's Frontend Design plugin + the 21st MCP: setup check, brief, one design direction, build, phone and desktop screenshot check | Code |
+| [business-audit](skills/business-audit) | Web search for every listing, review and mention of your business, checked against the truth, then a P1/P2/P3 fix list and drafted replies and correction requests | Both |
+| [llms-txt](skills/llms-txt) | Reads your site, writes an llms.txt in the llmstxt.org format, checks it with an included validator, puts it live at /llms.txt. A proposal, not a ranking guarantee | Both |
+| [be-concise](skills/be-concise) | The CLAUDE.md lines for short, answer-first replies, where they go (or Claude.ai's Instructions for Claude), with a before/after test | Both |
+
 ## My setup: CLAUDE.md
 
 [`CLAUDE.md`](CLAUDE.md) is the file my main Claude Code session runs from:
