@@ -73,6 +73,20 @@ Run in this order: transcribe, edit, write the post text, make the cover.
 | [precision-pdf-editing](skills/precision-pdf-editing) | Surgical edits to an existing PDF that keep fonts, highlights and layout, with a pixel diff to prove it | Code |
 | [downloadable-asset-engineering](skills/downloadable-asset-engineering) | Builds reproducible ZIP downloads and verifies the released bytes | Code |
 
+### Everyday business and dev skills
+
+Generic versions of skills I run every week, rewritten for anyone to use.
+Read-only or draft-only: nothing sends, deletes or posts without you.
+
+| Skill | What it does | Runs in |
+|---|---|---|
+| [meeting-follow-up](skills/meeting-follow-up) | After a call: verified attendee list, what was promised both ways, one owner per action, checks for replies and booked calls, then follow-up drafts. Never sends | Both |
+| [competitor-research](skills/competitor-research) | Competitor deep dive from official sources first, every claim labelled with its evidence, ending in a claim-safe battlecard | Both |
+| [safe-resale](skills/safe-resale) | Selling a valuable item: sold comps, net proceeds per channel as formulas, scam red flags, safe handover and shipping | Both |
+| [secure-credentials](skills/secure-credentials) | API keys and tokens without the value ever reaching chat, logs or git: locked .env, read-only check, gitleaks, rotation checklist | Code |
+| [linux-server-ops](skills/linux-server-ops) | Disk full, out of memory or runaway logs on a Linux server: measure first, safest fixes first, prevention, before and after report | Code |
+| [html-to-pdf](skills/html-to-pdf) | Documents as HTML with exact page layout, rendered to PDF headless, every page checked as an image. Tested render script included | Code |
+
 ### Skills from the reels ("Claude just killed...")
 
 Each one runs five parts. Nothing sends, posts or schedules on its own: every
