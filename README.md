@@ -161,6 +161,30 @@ project, a single NOW item, handoffs before any session closes, and no number
 quoted unless it was measured. Copy it, fill in the `<placeholders>`, make it
 yours.
 
+## SEO kit
+
+The three skills I use for search, in one place. They stay in their category
+folders above, so every existing link still works.
+
+| Skill | Use it for | Needs |
+|---|---|---|
+| [seo-agent](skills/web/seo-agent) | Daily or deep technical SEO audit of a site you own: crawl, indexability, internal links and orphans, JSON-LD, AI-crawler access in robots.txt, Core Web Vitals, real queries from Google Search Console, fixes shipped as pull requests you review | Claude Code, Python 3, your own Search Console access (setup in the skill) |
+| [llms-txt](skills/web/llms-txt) | Writes, validates and publishes an llms.txt so AI assistants can read what your business does. A proposal, not a ranking guarantee | Works in chat; Claude Code to put it live |
+| [youtube-seo](skills/social/youtube-seo) | YouTube titles, descriptions and chapters matched to what people search now, plus a back-catalogue refresh, with before and after tracking | Your YouTube Data API key or a Studio export |
+
+Install all three in one go:
+
+```bash
+git clone https://github.com/jsath/claude-skills.git
+cp -r claude-skills/skills/web/seo-agent claude-skills/skills/web/llms-txt \
+      claude-skills/skills/social/youtube-seo ~/.claude/skills/
+```
+
+For seo-agent, copy `sites/example.md` to `sites/<your-site>.md`, fill in your
+domain, repo and Search Console property, then run `/seo-agent <your-site>`.
+No credentials ship with any of these skills; each one tells you how to get
+your own.
+
 ## Honest limits
 
 - Skills run when you run them. "Every Monday" means a scheduled task (where
