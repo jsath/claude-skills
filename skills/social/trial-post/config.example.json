@@ -1,0 +1,12 @@
+{
+  "timezone": "America/New_York",
+  "accounts": {
+    "instagram": "<zernio account id for your Instagram, from accounts_list>",
+    "tiktok": "<zernio account id for your TikTok, from accounts_list>"
+  },
+  "spacing_minutes": {"instagram": 60, "tiktok": 45},
+  "daily_cap": {"instagram": 5, "tiktok": 5},
+  "ledger": "$HOME/.trial-post/ledger.jsonl",
+  "bio_line": "link in my bio",
+  "tiktok": {"allow_duet": false, "allow_stitch": false}
+}

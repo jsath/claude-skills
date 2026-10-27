@@ -2,7 +2,7 @@
 name: reel-captions
 description: "Write CAPTIONS-PLATFORMS.md for one finished short video: a per-platform post caption for Instagram, TikTok, YouTube Shorts (title + description), Facebook, Threads, Bluesky and X, each within that platform's limits, with your comment-keyword CTA on the platforms where it belongs and never on X. Keyword, CTA, platforms, hashtags and limits come from a config file; a checker script fails the file on any miss. Use after an edit is finished, when asked to 'write the captions', 'caption this reel for every platform', or before scheduling."
 author: Johann (@johannships)
-version: 2.0.0
+version: 2.1.0
 ---
 
 # Reel captions
@@ -87,9 +87,17 @@ cta: <exact CTA line or none>
 `short` feeds TikTok, Facebook, Threads and the YouTube description. Add
 `## tiktok`, `## facebook`, `## threads` or `## youtube_description` only to override it.
 
+## Dual endings (recommended for keyword reels)
+
+Comment-keyword DM tools usually only work on Instagram. If your edit exports two endings (`final.mp4` with
+"comment KEYWORD" for Instagram, `final-bio.mp4` with "link in my bio" for the rest, see `edit-style`), start from
+`config.dual.example.json`: `cta_platforms` is Instagram only, `bio_cta` is the exact bio line, and
+`bio_platforms` must carry it and must never say "comment" or the keyword. A `bio:` header line overrides it per
+reel. Worked example: `examples/CAPTIONS-PLATFORMS.dual.md` (passes the checker with the dual config).
+
 ## Rules
 
-- **CTA everywhere except X.** X is a short description, not a funnel: a
+- **CTA everywhere except X** (single-ending reels; with dual endings the non-Instagram platforms get the bio line instead). X is a short description, not a funnel: a
   comment-gate line there reads as spam. The checker refuses an X text with
   the CTA, the keyword, or the word "comment".
 - **No keyword on this reel?** Write `keyword: none` and either an engagement

@@ -14,7 +14,7 @@ elif python3 -c "import faster_whisper" 2>/dev/null; then ok "whisper: faster-wh
 elif command -v whisper-cli >/dev/null; then ok "whisper: whisper.cpp (pass --model ggml-*.bin)"
 else bad "a local Whisper" "see the use-local-whisper skill"; fi
 echo "optional (per feature)"
-python3 -c "import cv2" 2>/dev/null && ok "OpenCV (face_box.py)" || opt "OpenCV" "pip install opencv-python-headless"
+python3 -c "import cv2" 2>/dev/null && ok "OpenCV (face_box.py, reel_qa.py face_first)" || opt "OpenCV" "pip install opencv-python-headless"
 command -v node >/dev/null && ok "node ($(node -v))" || opt node "needed for capture_clock.js and Remotion panels"
 node -e "require('playwright')" 2>/dev/null && ok "playwright" || opt playwright "npm i playwright && npx playwright install chromium"
 command -v swiftc >/dev/null && ok "swiftc (iPhone HDR to SDR, macOS)" || opt swiftc "xcode-select --install (macOS only)"

@@ -1,10 +1,14 @@
 {
   "video": {
     "title": "Video: editing and repurposing",
-    "intro": "The pipeline behind my videos runs in this order: use-local-whisper (transcribe), edit-style or longform-edit (edit), reel-captions (post text), thumbnail-generator (cover).",
+    "intro": "The pipeline behind my videos runs in this order: footage-ingest (\"the card is in\": copy, sort, pick takes), use-local-whisper (transcribe), edit-style or longform-edit (edit), reel-captions (post text), thumbnail-generator (cover). Ideas, posting and the scorecard live in the social folder; the whole chain is in \"The full pipeline\" above.",
     "skills": {
+      "footage-ingest": {
+        "what": "After a shoot: finds the camera or mic card, copies every clip with size checks, flags clips whose audio and video lengths differ, transcribes one at a time, matches takes to the record sheet by slate, picks the best take of each hook, body and ending, mirrors and conforms the picks, ejects safely. Never writes to the card",
+        "notes": "Code"
+      },
       "edit-style": {
-        "what": "Raw talking-head take to a finished 1080x1920 reel: layouts that switch per line, real UI and official logos, captions on every word, -14 LUFS voice, measured QA gates",
+        "what": "Raw talking-head take to a finished 1080x1920 reel: layouts that switch per line, real UI and official logos, face from frame 1, captions on every word, -14 LUFS voice, two CTA endings, measured QA gates incl. dead air and audio-envelope checks at every join",
         "notes": "Code"
       },
       "longform-edit": {
@@ -55,8 +59,20 @@
   },
   "social": {
     "title": "Social: ideas, planning and channels",
-    "intro": "Most of these came from my \"Claude just killed...\" reels. Each runs in five parts and nothing posts on its own: every outgoing item is a draft you approve.",
+    "intro": "Most of these came from my \"Claude just killed...\" reels. Nothing posts on its own: every outgoing item is a draft you approve, except trial-post, which posts only reels that passed every gate, inside the rules in its SKILL.md.",
     "skills": {
+      "reel-ideation": {
+        "what": "Top creators in your niche and their recent virals with proof (likes, views, link, multiple of the creator's median) via Agent Reach and yt-dlp; voice-dictation dumps to numbered ideas; full scripts copying a proven format with 3 hooks each, in a record sheet",
+        "notes": "Code (Both with pasted numbers)"
+      },
+      "trial-post": {
+        "what": "Instagram Trial Reels + TikTok through the Zernio MCP connector: the posts_create_post + trialParams path (never the feed-post trap), trial proof checked, spacing, caps, duplicate guard, STOP file; adapter for other schedulers",
+        "notes": "Code"
+      },
+      "reel-scorecard": {
+        "what": "72-hour read of the trials: which hook won each idea, what to graduate, kill or retire, same-source matched windows, weekly learning log",
+        "notes": "Code (Both with a CSV)"
+      },
       "viral-breakdown": {
         "what": "Finds videos that beat their creator's normal by 3x, explains why, ends in a weekly top five",
         "notes": "reel: \"Claude just killed your competitor research\""
