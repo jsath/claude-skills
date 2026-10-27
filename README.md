@@ -8,6 +8,42 @@ CLAUDE.md my main session runs from. Private details are taken out.
 
 Free and MIT licensed (humanizer keeps its own MIT licence, see the writing folder).
 
+## The full pipeline: idea -> script -> record -> "DJI is in" -> edit -> trial post -> scorecard
+
+This is the whole content process I run, one skill per step. Install the eight folders below, record, plug the
+camera card in, tell Claude "DJI is in" (any camera card works), and it gets the footage, sorts it, edits it and
+posts the trial reels. You approve the ideas, film, and tap "Share to everyone" on the winners.
+
+| # | Step | Skill | What you get | You do |
+|---|---|---|---|---|
+| 1 | Idea | [reel-ideation](skills/social/reel-ideation) | top creators in your niche, their recent virals with proof (likes, views, link, multiple of their own median), your voice-dictation dumps split into numbered ideas | pick the ideas |
+| 2 | Script | [reel-ideation](skills/social/reel-ideation) + [script-polish](skills/video/script-polish) | word-for-word scripts copying a proven format (never its words), 3 hooks of different types each, both CTA endings, a RECORD-SHEET.md | answer the one-word questions |
+| 3 | Record | RECORD-SHEET.md | the order to film in, slates to say, checks between setups | film |
+| 4 | "DJI is in" | [footage-ingest](skills/video/footage-ingest) (uses [use-local-whisper](skills/video/use-local-whisper)) | clips copied and size-checked, audio == video on every clip, transcripts, takes matched to scripts, best takes picked, mirror + 30 fps conform, card ejected, TAKE-MAP.md | plug the card in |
+| 5 | Edit | [edit-style](skills/video/edit-style) | 1080x1920 reels: face from frame 1, official logos, real UI, captions on every word, no dead air at joins, an Instagram ending and a link-in-bio ending, gates on the final files | look at the contact sheet |
+| 6 | Captions | [reel-captions](skills/video/reel-captions) | per-platform post text, keyword CTA on Instagram only, bio line elsewhere, checked by a script | nothing |
+| 7 | Trial post | [trial-post](skills/social/trial-post) | Instagram Trial Reels + TikTok via the Zernio MCP connector, every safety check, adapter for other schedulers | nothing |
+| 8 | Scorecard | [reel-scorecard](skills/social/reel-scorecard) | at 72 h: which hook won each idea, what to graduate, kill or retire | tap "Share to everyone" on the winner |
+
+Install just the pipeline (Claude Code):
+
+```bash
+git clone https://github.com/jsath/claude-skills.git
+for s in social/reel-ideation video/script-polish video/footage-ingest video/use-local-whisper \
+         video/edit-style video/reel-captions social/trial-post social/reel-scorecard; do
+  cp -r "claude-skills/skills/$s" ~/.claude/skills/
+done
+```
+
+What runs where: steps 1, 2, 6 and 8 work in any chat (Claude.ai or ChatGPT) if you paste links, numbers and
+transcripts. Steps 4, 5 and 7 need Claude Code on the computer the card is plugged into: a chat app cannot read a
+card, run ffmpeg or Whisper, or call the Zernio connector with the checks around it. Each skill lists its own
+requirements and a setup check.
+
+Setting this up for your own channel? Point your AI at this README and ask it to compare your current setup with
+the table above, step by step, and install what is missing.
+
+## What's inside
 ## What's inside
 
 ```
@@ -55,11 +91,12 @@ Six folders, one per kind of job. Every skill keeps its own folder name, so
 
 ### Video: editing and repurposing (`skills/video/`)
 
-The pipeline behind my videos runs in this order: use-local-whisper (transcribe), edit-style or longform-edit (edit), reel-captions (post text), thumbnail-generator (cover).
+The pipeline behind my videos runs in this order: footage-ingest ("the card is in": copy, sort, pick takes), use-local-whisper (transcribe), edit-style or longform-edit (edit), reel-captions (post text), thumbnail-generator (cover). Ideas, posting and the scorecard live in the social folder; the whole chain is in "The full pipeline" above.
 
 | Skill | What it does | Runs in / from |
 |---|---|---|
-| [edit-style](skills/video/edit-style) | Raw talking-head take to a finished 1080x1920 reel: layouts that switch per line, real UI and official logos, captions on every word, -14 LUFS voice, measured QA gates | Code |
+| [footage-ingest](skills/video/footage-ingest) | After a shoot: finds the camera or mic card, copies every clip with size checks, flags clips whose audio and video lengths differ, transcribes one at a time, matches takes to the record sheet by slate, picks the best take of each hook, body and ending, mirrors and conforms the picks, ejects safely. Never writes to the card | Code |
+| [edit-style](skills/video/edit-style) | Raw talking-head take to a finished 1080x1920 reel: layouts that switch per line, real UI and official logos, face from frame 1, captions on every word, -14 LUFS voice, two CTA endings, measured QA gates incl. dead air and audio-envelope checks at every join | Code |
 | [longform-edit](skills/video/longform-edit) | Raw YouTube recording to a publish-ready video: retakes removed (last take kept), dead air tightened, mastered voice, captions throughout, chapters and description, gates on the final render | Code |
 | [use-local-whisper](skills/video/use-local-whisper) | Local transcription with word timestamps (words.json, .txt, .srt). Nothing uploaded, no API key | Code |
 | [reel-captions](skills/video/reel-captions) | Per-platform post captions for one finished video, with a checker for length, hashtags and where the CTA may go | Both |
@@ -74,10 +111,13 @@ The pipeline behind my videos runs in this order: use-local-whisper (transcribe)
 
 ### Social: ideas, planning and channels (`skills/social/`)
 
-Most of these came from my "Claude just killed..." reels. Each runs in five parts and nothing posts on its own: every outgoing item is a draft you approve.
+Most of these came from my "Claude just killed..." reels. Nothing posts on its own: every outgoing item is a draft you approve, except trial-post, which posts only reels that passed every gate, inside the rules in its SKILL.md.
 
 | Skill | What it does | Runs in / from |
 |---|---|---|
+| [reel-ideation](skills/social/reel-ideation) | Top creators in your niche and their recent virals with proof (likes, views, link, multiple of the creator's median) via Agent Reach and yt-dlp; voice-dictation dumps to numbered ideas; full scripts copying a proven format with 3 hooks each, in a record sheet | Code (Both with pasted numbers) |
+| [trial-post](skills/social/trial-post) | Instagram Trial Reels + TikTok through the Zernio MCP connector: the posts_create_post + trialParams path (never the feed-post trap), trial proof checked, spacing, caps, duplicate guard, STOP file; adapter for other schedulers | Code |
+| [reel-scorecard](skills/social/reel-scorecard) | 72-hour read of the trials: which hook won each idea, what to graduate, kill or retire, same-source matched windows, weekly learning log | Code (Both with a CSV) |
 | [viral-breakdown](skills/social/viral-breakdown) | Finds videos that beat their creator's normal by 3x, explains why, ends in a weekly top five | reel: "Claude just killed your competitor research" |
 | [idea-bank](skills/social/idea-bank) | Outlier videos in your niche to a month of ideas you can speak to | reel: "Claude just killed your ideas meeting" |
 | [best-time](skills/social/best-time) | Reads your analytics exports and plans what to post, where and when | reel: "Claude just killed your posting schedule" |

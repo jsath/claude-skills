@@ -19,6 +19,16 @@ By Johann (@johannships). These rules came from rewriting dozens of my own scrip
 
 If no voice sample is given, use the default voice below and say so in the change log.
 
+## Hooks: three per script, three different types
+
+For any short or reel, read `references/hooks-and-voice.md` first. Return **3 hooks of different types**
+(callout, mistake/warning, belief flip, proof, number, story opener, question, curiosity gap, comparison/POV),
+each 8 to 16 words and said inside 1.5 to 4 s, so all three get recorded and tested as separate trial reels
+(see the `trial-post` and `reel-scorecard` skills). Structure the body as: hook -> why it matters -> the one idea
+with a real example -> proof (something the creator did) -> a simple close. Anything not yet verified goes in
+[brackets] and is confirmed or cut before filming. Keyword reels get two recorded endings: "comment KEYWORD" for
+Instagram and "check the link in my bio" for every other platform.
+
 ## Pass 1: voice rules
 
 1. **No forced analogies.** Delete any comparison a real person would not say to a friend ("Ferrari in first gear", "like reading a textbook while having a conversation", anything after "think of it like..."). Say the thing directly. "73KB of context is slow" beats any metaphor.

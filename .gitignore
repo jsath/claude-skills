@@ -22,3 +22,6 @@ __pycache__/
 PROGRESS.md
 REVIEW.md
 .progress-*.log
+
+# Your filled-in skill configs (account ids, paths)
+skills/*/*/config.json

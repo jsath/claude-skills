@@ -1,0 +1,10 @@
+{
+  "window_hours": [72, 96],
+  "instagram": {
+    "graduate": {"max_skip_pct": 55, "min_hold_pct": 28, "min_views": 1000},
+    "kill_skip_pct": 65,
+    "retire": {"all_skip_pct_at_least": 60, "views_under": 1300},
+    "tie_points": 2
+  },
+  "tiktok": {"rank_by": "completionRate"}
+}

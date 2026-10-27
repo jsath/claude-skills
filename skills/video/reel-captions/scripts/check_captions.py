@@ -6,7 +6,9 @@ Exit 0 = every check passed, 1 = at least one FAIL (each printed with the reason
 
 Sections are '## <name>'. 'short' feeds tiktok, facebook, threads and youtube_description
 unless those have their own section. Lines starting with '# ' are comments.
-'keyword:' and 'cta:' header lines override the config's keyword/cta for this reel ('none' = no CTA).
+'keyword:', 'cta:' and 'bio:' header lines override the config for this reel ('none' = no CTA).
+Dual endings: when the config has bio_cta + bio_platforms, those platforms must carry the bio line and must not
+say "comment" or the keyword (the video exported for them ends on the link-in-bio clip).
 """
 import argparse, json, os, re, sys
 
@@ -19,7 +21,7 @@ def parse(path):
         if line.startswith("## "):
             cur = line[3:].strip().lower(); secs[cur] = []; continue
         if cur is None:
-            m = re.match(r"^(keyword|cta):\s*(.*)$", line)
+            m = re.match(r"^(keyword|cta|bio):\s*(.*)$", line)
             if m:
                 head[m.group(1)] = m.group(2).split("  #")[0].strip()
             continue
@@ -63,6 +65,18 @@ def main():
             fails.append(f"{p}: contains the word 'comment'")
         if kw.lower() != "none" and re.search(rf"\b{re.escape(kw)}\b", t):
             fails.append(f"{p}: contains the keyword {kw}")
+    bio = head.get("bio", cfg.get("bio_cta", ""))
+    for p in cfg.get("bio_platforms", []) if bio and bio.lower() != "none" else []:
+        t = text(p)
+        if not t:
+            fails.append(f"{p}: missing (bio platforms need a section or ## short)")
+            continue
+        if bio not in t:
+            fails.append(f"{p}: bio CTA missing (exact text: {bio})")
+        if re.search(r"\bcomment\b", t, re.I):
+            fails.append(f"{p}: says 'comment' but this platform gets the link-in-bio ending")
+        if kw.lower() != "none" and re.search(rf"\b{re.escape(kw)}\b", t):
+            fails.append(f"{p}: contains the keyword {kw} (keyword DMs only work on the cta_platforms)")
     for p in cfg.get("skip_platforms", []):
         if p in s:
             fails.append(f"{p}: section present but this platform is skipped")
